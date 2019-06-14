@@ -1,8 +1,6 @@
-/**
- *  Created by Nirav Bhimani
- **/
-
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import IconButton from '@material-ui/core/IconButton'
+import ExitToApp from '@material-ui/icons/ExitToApp'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -13,7 +11,6 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import API from '../../helpers/api'
-import { LoginContext } from '../../context/loginContext'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -40,50 +37,33 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Login () {
+export default function RegisterUser () {
   const classes = useStyles()
-  const [emailId, setEmailId] = useState('')
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorStatus, setErrorStatus] = useState(false)
-  const [
-    loginStatus,
-    setAccessToken,
-    developerMode,
-    setTriggerDeveloperMode
-  ] = useContext(LoginContext)
 
-  function validationCheck () {
-    if (!developerMode) {
-      const email = emailId
-      const pwd = password
-      // let emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      // let emailPatternTest = emailPattern.test(email);
-      if (email && pwd) {
-        API.loginUser({ emailId, password }, setAccessToken)
-        return true
-      } else if (email === undefined && pwd === undefined) {
-        setErrorStatus(true)
-        // this.toast("Email or password must not be empty!")
-        return false
-      } else if (!email) {
-        setErrorStatus(true)
-        // this.toast("Email must not be empty!")
-        return false
-      } else if (!email && email.length > 0) {
-        setErrorStatus(true)
-        // this.toast("Invalid email!")
-
-        return false
-      } else if (!pwd) {
-        setErrorStatus(true)
-        // this.toast("Password must not be empty!")
-        return false
+  function regiserUser () {
+    let data = {
+      firstName: 'andrea',
+      lastName: 'test',
+      emailId: 'andreas@test.com',
+      password: '1234',
+      mobile: '04154739311',
+      profile: {
+        dob: '02/02/2019',
+        gender: 'MALE'
       }
-    } else {
-      window.localStorage.clear()
-      setTriggerDeveloperMode(true)
     }
+
+    API.registerUser(data)
   }
+
+  useEffect(() => {
+    console.log(name)
+  }, [])
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -92,7 +72,7 @@ export default function Login () {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Login
+          Register
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -100,12 +80,36 @@ export default function Login () {
             margin='normal'
             required
             fullWidth
-            id='email'
-            label='Email Address'
-            name='email'
-            autoComplete='email'
-            onChange={e => setEmailId(e.target.value)}
+            id='name'
+            label='name'
+            name='name'
+            autoComplete='name'
+            onChange={e => setName(e.target.value)}
             autoFocus
+          />
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            name='surname'
+            label='surname'
+            type='text'
+            id='surname'
+            onChange={e => setSurname(e.target.value)}
+            autoComplete='surname'
+          />
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            name='email'
+            label='email'
+            type='email'
+            id='email'
+            onChange={e => setEmail(e.target.value)}
+            autoComplete='Email'
           />
           <TextField
             variant='outlined'
@@ -124,9 +128,18 @@ export default function Login () {
             variant='contained'
             color='primary'
             className={classes.submit}
-            onClick={validationCheck}
+            // onClick={validationCheck}
           >
-            Login
+            Sign Up with LinkedIn
+          </Button>
+          <Button
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+            onClick={regiserUser}
+          >
+            Sign Up
           </Button>
         </form>
       </div>
