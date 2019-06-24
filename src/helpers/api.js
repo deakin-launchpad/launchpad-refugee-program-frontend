@@ -9,13 +9,13 @@ class API {
   // POST Request
   registerUser = data => {
     console.log(data)
-    axios({
-      method: 'post',
-      url: 'http://10.140.16.209:8011/api/user/register',
-      data: data
-    })
-      .then(response => response)
-      .catch(error => console.log(error))
+    // axios({
+    //   method: 'post',
+    //   url: 'http://10.140.16.209:8011/api/user/register',
+    //   data: data
+    // })
+    // .then(response => response)
+    // .catch(error => console.log(error))
   }
   loginUser = (data, accessToken) => {
     axios({
