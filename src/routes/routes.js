@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Login from 'views/login/login'
 import Home from 'views/home/home'
-import SignUp from 'views/signUp/SignUp'
+import Register from 'views/register/register'
 
 // Import Context
 import { LoginContext } from '../context/loginContext'
@@ -32,7 +32,7 @@ export const AppRoutes = () => {
           !loginStatus ? <Redirect to={{ pathname: '/login' }} /> : <Home />
         }
       />
-      <Route exact path='/user/register' render={() => <SignUp />} />
+      <Route exact path='/user/register' render={() => <Register />} />
     </Switch>
   )
 }

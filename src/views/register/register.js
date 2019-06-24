@@ -45,7 +45,7 @@ export default function RegisterUser () {
   const [password, setPassword] = useState('')
   const [errorStatus, setErrorStatus] = useState(false)
 
-  function regiserUser () {
+  function registerUser () {
     let data = {
       firstName: 'andrea',
       lastName: 'test',
@@ -130,16 +130,16 @@ export default function RegisterUser () {
             className={classes.submit}
             // onClick={validationCheck}
           >
-            Sign Up with LinkedIn
+            Register with LinkedIn
           </Button>
           <Button
             fullWidth
             variant='contained'
             color='primary'
             className={classes.submit}
-            onClick={regiserUser}
+            onClick={registerUser}
           >
-            Sign Up
+            Register
           </Button>
         </form>
       </div>
