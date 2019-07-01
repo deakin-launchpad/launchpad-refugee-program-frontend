@@ -7,7 +7,12 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Login from 'views/employerViews/login/login'
 import Home from 'views/home/home'
-import Register from 'views/employerViews/register/register'
+import RegisterEmployer from 'views/employerViews/register/register'
+import RegisterEmployee from 'views/employeeViews/register/Register'
+import OnBoarding from 'views/employeeViews/register/OnBoarding'
+import Profile from 'views/employeeViews/profile/Profile'
+
+
 
 // Import Context
 import { LoginContext } from '../context/loginContext'
@@ -36,10 +41,13 @@ export const AppRoutes = () => {
       />
 
       {/* Register */}
-      <Route exact path='/user/register' render={() => <Register />} />
+      <Route exact path='/user/register/employer' render={() => <RegisterEmployer />} />
+      <Route exact path='/user/register/employee' render={() => <RegisterEmployee />} />
+      <Route exact path='/user/register/employee/onBoarding' render={() => <OnBoarding />} />
 
-      {/* Create Profile */}
-      {/* <Route exact path='/user/createProfile' render={() => <CreateProfile />} /> */}
+
+      {/*  Profile */}
+      <Route exact path='/user/profile' render={() => <Profile />} />
 
     </Switch>
 

@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
@@ -25,7 +27,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
   avatar: {
     margin: theme.spacing(1),
@@ -127,6 +132,26 @@ export default function Login() {
             onClick={validationCheck}
           >
             Login
+          </Button>
+          <Typography component='h1' variant='h5'>
+            Or
+        </Typography>
+          <Button
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+          >
+
+            Signup with Email
+          </Button>
+          <Button
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+          >
+            Signup with Linkedin
           </Button>
         </form>
       </div>

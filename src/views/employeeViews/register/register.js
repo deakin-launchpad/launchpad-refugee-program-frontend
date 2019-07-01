@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import API from '../../../helpers/api'
+import { Link } from 'react-router-dom'
+// import AutoFill from '../../../components/switchAutofill'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -123,24 +125,28 @@ export default function RegisterUser() {
             onChange={e => setPassword(e.target.value)}
             autoComplete='current-password'
           />
-          <Button
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-          // onClick={validationCheck}
-          >
-            Register with LinkedIn
-          </Button>
-          <Button
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-            onClick={registerUser}
-          >
-            Register
-          </Button>
+
+          <Link to='/user/onBoarding' className='login-btn'>
+            <Button
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            // onClick={validationCheck}
+            >Register with Linkedin</Button>
+          </Link>
+
+
+          <Link to='/user/register/employee/onBoarding' className='login-btn'>
+            <Button
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+              onClick={registerUser}
+            >Register</Button>
+          </Link>
+
         </form>
       </div>
       <Box mt={5}>
@@ -148,6 +154,7 @@ export default function RegisterUser() {
           Developed by Deakin Launchpad team
         </Typography>
       </Box>
+      {/* <AutoFill></AutoFill> */}
     </Container>
   )
 }

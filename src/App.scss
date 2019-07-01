@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+.container-reg {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  ;
+}
+
+
+.login-btn {
+  color: white;
+  text-decoration: none;
+}
