@@ -1,13 +1,15 @@
 /**
- *  Created by Nirav Bhimani
+ *  Created by Nirav Bhimani who isn't working anymore
  **/
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './App.scss';
 import { AppRoutes } from './routes/routes';
 
 // Context import
 import { LoginProvider } from './context/loginContext';
+import {DeveloperModeProvider} from './context/developerModeContext'
+import {DemoDataProvider} from './context/demodataContext'
 
 function App() {
   useEffect(() => {
@@ -15,9 +17,13 @@ function App() {
   }, []);
 
   return (
+    <DeveloperModeProvider>
+    <DemoDataProvider>
     <LoginProvider>
-      <AppRoutes />
+      <AppRoutes/>
     </LoginProvider>
+    </DemoDataProvider>
+    </DeveloperModeProvider>
   );
 }
 

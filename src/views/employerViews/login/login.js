@@ -1,8 +1,8 @@
 /**
- *  Created by Nirav Bhimani
+ *  Created by Nirav Bhimani who isn't working
  **/
 
-import React, { useState, useContext } from 'react'
+import React, { useState,useEffect, useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -14,7 +14,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import API from '../../../helpers/api'
 import { LoginContext } from '../../../context/loginContext'
-
+import { DeveloperModeContext} from '../../../context/developerModeContext'
+import {DemoDataContext} from 'context/demodataContext'
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -45,6 +46,29 @@ export default function Login() {
   const [emailId, setEmailId] = useState('')
   const [password, setPassword] = useState('')
   const [errorStatus, setErrorStatus] = useState(false)
+  const [developerMODE,setDeveloperMode] = useContext(DeveloperModeContext);
+  const [data, setData] = useContext(DemoDataContext);
+
+  const [input1 , setinput1]= useState('');
+  const [input2 , setinput2]= useState('');
+  const [autofill , setautofill]= useState(false);
+
+  function autoFill(value) {
+    if(autofill == false)
+      {
+      setinput1('')
+      setinput2('')
+    }
+    else 
+    {
+      setinput1(data.emailId)
+      setinput2(data.password)
+    }
+  }
+
+  useEffect(() => {
+    autoFill()
+  }, [autofill])
   const [
     loginStatus,
     setAccessToken,
@@ -103,6 +127,7 @@ export default function Login() {
             id='email'
             label='Email Address'
             name='email'
+            value = {input1}
             autoComplete='email'
             onChange={e => setEmailId(e.target.value)}
             autoFocus
@@ -116,6 +141,7 @@ export default function Login() {
             label='Password'
             type='password'
             id='password'
+            value = {input2}
             onChange={e => setPassword(e.target.value)}
             autoComplete='current-password'
           />
@@ -128,6 +154,10 @@ export default function Login() {
           >
             Login
           </Button>
+
+          {developerMODE && <Button align = "right" variant="contained" className={classes.button} onClick={() => setautofill(prevautofill => !prevautofill )}>
+          Demo
+        </Button>}
         </form>
       </div>
       <Box mt={5}>

@@ -17,8 +17,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
-import AutoFill from '../../../components/autoFill'
-
+import { DeveloperModeContext} from '../../../context/developerModeContext'
+import {DemoDataContext} from 'context/demodataContext'
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -51,8 +51,8 @@ export default function RegisterUser() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorStatus, setErrorStatus] = useState(false)
-
-
+  const [developerMODE,setDeveloperMode] = useContext(DeveloperModeContext);
+  const [data, setData] = useContext(DemoDataContext);
  
 
   function registerUser() {
@@ -79,7 +79,6 @@ export default function RegisterUser() {
   
   
   function autoFill(value) {
-    //const autofillcheck = useContext(AutofillContext)
         if(autofill == false)
           {
           setinput1('')
@@ -89,14 +88,13 @@ export default function RegisterUser() {
         }
         else 
         {
-          setinput1('andrea')
-          setinput2('test')
-          setinput3('andreas@test.com')
-          setinput4('1234')
+          setinput1(data.firstName)
+          setinput2(data.lastName)
+          setinput3(data.emailId)
+          setinput4(data.password)
         }
       }
     
-  //const [developerMODE,setDeveloperMode]=useContext()
   useEffect(() => {
     console.log(name)
     autoFill()
@@ -182,9 +180,11 @@ export default function RegisterUser() {
           >
             Register
           </Button>
-        <Button align = "right" variant="contained" className={classes.button} onClick={() => setautofill(prevautofill => !prevautofill )}>
+
+        {developerMODE && <Button align = "right" variant="contained" className={classes.button} onClick={() => setautofill(prevautofill => !prevautofill )}>
           Demo
-        </Button>
+        </Button>}
+        
         </form>
       </div>
       
