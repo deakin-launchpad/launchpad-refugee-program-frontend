@@ -5,6 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -35,31 +37,36 @@ export default function ControlledOpenSelect() {
   }
 
   return (
-    <form autoComplete="off">
-      <Button className={classes.button} onClick={handleOpen}>
-        Open the select
+    <div>
+      <Typography component='h1' variant='h5'>
+        Which industry are you intereste in ?
+        </Typography>
+      <form autoComplete="off">
+        <Button className={classes.button} onClick={handleOpen}>
+          Open the select
       </Button>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="demo-controlled-open-select">Industry Field</InputLabel>
-        <Select
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={industryField}
-          onChange={handleChange}
-          inputProps={{
-            name: 'industryField',
-            id: 'demo-controlled-open-select',
-          }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Chemical industry</MenuItem>
-          <MenuItem value={20}>Defense industry</MenuItem>
-          <MenuItem value={30}>Energy industry</MenuItem>
-        </Select>
-      </FormControl>
-    </form>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="demo-controlled-open-select">Industry Field</InputLabel>
+          <Select
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={industryField}
+            onChange={handleChange}
+            inputProps={{
+              name: 'industryField',
+              id: 'demo-controlled-open-select',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Chemical industry</MenuItem>
+            <MenuItem value={20}>Defense industry</MenuItem>
+            <MenuItem value={30}>Energy industry</MenuItem>
+          </Select>
+        </FormControl>
+      </form>
+    </div>
   );
 }

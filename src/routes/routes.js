@@ -11,6 +11,7 @@ import RegisterEmployer from 'views/employerViews/register/register'
 import RegisterEmployee from 'views/employeeViews/register/Register'
 import OnBoarding from 'views/employeeViews/register/OnBoarding'
 import Profile from 'views/employeeViews/profile/Profile'
+import EmpolyeeHome from 'views/employeeViews/home/Home'
 
 
 
@@ -48,6 +49,12 @@ export const AppRoutes = () => {
 
       {/*  Profile */}
       <Route exact path='/user/profile' render={() => <Profile />} />
+      <Route
+        exact
+        path='/user/employee/home'
+        render={() => <EmpolyeeHome />} />
+      }
+    />
 
     </Switch>
 

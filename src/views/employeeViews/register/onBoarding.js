@@ -7,7 +7,11 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SelectJob from '../../../components/SelectJob'
 import ResumeBuilder from '../../../components/ResumeBuilder'
 import { Link } from 'react-router-dom'
+import Typography from '@material-ui/core/Typography'
+import TabOnboard from '../../../components/TabOnboarding'
 import Map from '../../../components/Map'
+import AddPicture from '../../../components/AddPicture'
+import EndOnBoarding from '../../../components/EndOnboarding'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,6 +37,13 @@ export default function ProgressMobileStepper() {
 
   return (
     <div>
+
+
+      {activeStep === 0 ?
+        <TabOnboard></TabOnboard> : ''}
+      {activeStep === 1 ? <SelectJob /> : ''}
+      {activeStep === 2 ? <AddPicture /> : ''}
+      {activeStep === 3 ? <EndOnBoarding /> : ''}
       <MobileStepper
         variant="progress"
         steps={4}
@@ -52,14 +63,6 @@ export default function ProgressMobileStepper() {
         </Button>
         }
       />
-
-
-      {activeStep === 0 ?
-        <SelectJob></SelectJob> : ''}
-      {activeStep === 1 ? <ResumeBuilder></ResumeBuilder> : ''}
-      {activeStep === 2 ? <Map></Map> : ''}
-      {activeStep === 3 ? <Button><Link to='/user/profile'>Save</Link></Button> : ''}
-
     </div>
   );
 }

@@ -1,0 +1,27 @@
+version: "2"
+services:
+  app:
+    container_name: memory-recall
+    image: deakinlaunchpad/memory-recall-backend-dev:test
+    restart: always
+    environment:
+      - NODE_ENV=test
+      - DEBUG=app:*,-app:nDispatcher:REMOVED
+    command: bash -c "node setup.js && nodemon src/server.js"
+    ports:
+      - "8016:8016"
+    links:
+      - mongo_memory_recall_test
+      - redis_memory_recall_test
+  mongo_memory_recall_test:
+    container_name: mongo_memory_recall_test
+    image: mongo
+    volumes:
+      - ./data:/data/memory_recall-test/db
+    ports:
+      - "27017:27017"
+  redis_memory_recall_test:
+    container_name: redis_memory_recall_test
+    image: redis
+    ports:
+      - "6379:6379"
