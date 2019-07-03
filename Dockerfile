@@ -3,8 +3,10 @@ FROM node:10
 WORKDIR /app 
 COPY . . 
 
-EXPOSE 8016 
+EXPOSE 3031 
 
-RUN npm install -g nodemon 
 RUN npm install 
-RUN cp .env.example .env
+
+RUN npm rebuild node-sass
+
+CMD ["npm","start"]
