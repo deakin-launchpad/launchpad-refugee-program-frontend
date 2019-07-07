@@ -8,6 +8,10 @@ import { AppRoutes } from './routes/routes';
 
 // Context import
 import { LoginProvider } from './context/loginContext';
+import HomeContext from './context/homeContext'
+import { ProfileProvider } from './context/profileContext'
+import { NewsProvider } from './context/newsContext'
+
 
 function App() {
   useEffect(() => {
@@ -16,7 +20,13 @@ function App() {
 
   return (
     <LoginProvider>
-      <AppRoutes />
+      <ProfileProvider>
+        <HomeContext>
+          <NewsProvider>
+            <AppRoutes />
+          </NewsProvider>
+        </HomeContext>
+      </ProfileProvider>
     </LoginProvider>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -7,16 +7,25 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import TopBar from '../../../components/TopBar'
-import Opportunity from '../../../components/employee/Opportunities'
+import Opportunity from '../../../components/employee/Opportunity'
 import OpportunitiesData from '../../../dumbData/opportunities'
+import NewsData from '../../../dumbData/news'
+import { OpportunityContext, NewsContext, ResourcesContex } from '../../../context/homeContext'
+import News from '../../../components/employee/News'
+import NewsSinglePage from '../../../components/employee/NewsSinglePage'
+import OpporunitySingleFullPage from '../../../components/employee/OpportunitySingleFullPage'
 import { Button } from '@material-ui/core';
+import Resources from '../../../components/employee/Resources'
+import LegalAdvice from '../../../components/employee/legalAdvice'
+import Organizations from '../../../components/employee/organizations'
+import Programs from '../../../components/employee/programs'
 
 
 
 
 function TabContainer({ children, dir }) {
   return (
-    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+    <Typography component="div" dir={dir} style={{ padding: 2 * 3 }}>
       {children}
     </Typography>
   );
@@ -35,12 +44,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
 export default function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const [data, setData] = useState()
-  const [temp, setTemp] = useState(true);
+  const [opportunity] = useContext(OpportunityContext)
+  const [news] = useContext(NewsContext)
+  const [resources] = useContext(ResourcesContex)
+
+
 
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -49,20 +62,10 @@ export default function FullWidthTabs() {
   function handleChangeIndex(index) {
     setValue(index);
   }
-
-  // function handleData(id) {
-  //   OpportunitiesData.opportunities.map(opportunity => {
-  //     showOpportunity = {id, content, type, date, location, position }
-  //     opportunity.id === id ? 
-  //   })
-  // }
-  function toggle() {
-    if (temp) setTemp(false)
-    else setTemp(true)
-  }
+  const { id, location, position, type, date, content, toogle } = opportunity
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <TopBar></TopBar>
       <AppBar position="static" color="default">
         <Tabs
@@ -75,7 +78,6 @@ export default function FullWidthTabs() {
           <Tab label="Search" />
           <Tab label="News" />
           <Tab label="Resources" />
-
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -86,30 +88,44 @@ export default function FullWidthTabs() {
         {/* Search tab */}
 
 
-        {temp && <TabContainer dir={theme.direction}>
-          <Typography style={{ backgroundColor: '#e0e0e0' }}>We found {OpportunitiesData.opportunities.length} opportunities</Typography>
-          {OpportunitiesData.opportunities.map(opportunity => {
-            return (
-              <div key={opportunity.id}>
-                <Opportunity data={opportunity} />
+        <TabContainer dir={theme.direction} >
+          {!opportunity.toogle ? <div>
+            <Typography style={{ backgroundColor: '#e0e0e0' }}>We found {OpportunitiesData.opportunities.length} opportunities</Typography>
+            {OpportunitiesData.opportunities.map(opportunity => {
+              return (
+                <div key={opportunity.id} style={{ margin: '8px 0' }}>
+                  <Opportunity data={opportunity} />
+                </div>
+              )
+            })}
+          </div>
+            :
+            <OpporunitySingleFullPage data={opportunity} />
+          }
+        </TabContainer>
 
+
+
+        <TabContainer dir={theme.direction}>
+          {!news.toogle ?
+            <div>
+              <div key={news.id} style={{ margin: '8px 0' }}>
+                <News />
               </div>
-            )
-          })}
-        </TabContainer>}
+            </div>
+            :
+            <NewsSinglePage />
+          }
 
-        {!temp &&
-          <div>ok</div>
 
-        }
+          {/* : <NewsSinglePage data={opportunity} /> */}
 
-        <TabContainer dir={theme.direction}>Item Two</TabContainer>
-        <TabContainer dir={theme.direction}>Item Three</TabContainer>
+        </TabContainer>
+        <TabContainer dir={theme.direction}>
+          {(!resources.legalAdvice && !resources.programs && !resources.organizations) ? <Resources /> : resources.legalAdvice ? <LegalAdvice /> : resources.programs ? <Programs /> : resources.organizations ? <Organizations /> : ''}
+        </TabContainer>
       </SwipeableViews>
 
-      <Button onClick={() => {
-        toggle()
-      }}>TOGGLE</Button>
     </div>
   );
 }

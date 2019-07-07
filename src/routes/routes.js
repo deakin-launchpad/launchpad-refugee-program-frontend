@@ -12,6 +12,8 @@ import RegisterEmployee from 'views/employeeViews/register/Register'
 import OnBoarding from 'views/employeeViews/register/OnBoarding'
 import Profile from 'views/employeeViews/profile/Profile'
 import EmpolyeeHome from 'views/employeeViews/home/Home'
+import ApplicationView from 'views/employeeViews/home/ApplicationView'
+
 
 
 
@@ -29,6 +31,13 @@ export const AppRoutes = () => {
         path='/'
         render={() =>
           !loginStatus ? <Redirect to={{ pathname: '/login' }} /> : <Home />
+        }
+      />
+      <Route
+        exact
+        path='/user/application'
+        render={() =>
+          !loginStatus ? <Redirect to={{ pathname: '/login' }} /> : <ApplicationView />
         }
       />
 
