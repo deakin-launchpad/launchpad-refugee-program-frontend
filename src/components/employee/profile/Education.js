@@ -14,6 +14,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Link } from 'react-router-dom'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,16 +54,16 @@ export default function Experience(props) {
     <div className={classes.root}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Paper className={classes.separator}>Experience</Paper>
+          <Paper className={classes.separator}>Education</Paper>
         </Grid>
         <Grid item xs={12}>
           <Card className={classes.card}>
             <CardContent>
-            <div style={{ display: 'flex' }}>
-              <Typography className={classes.title} color="textPrimary" gutterBottom>
-                Marketing
+              <div style={{ display: 'flex' }}>
+                <Typography className={classes.title} color="textPrimary" gutterBottom>
+                  Marketing
               </Typography>
-              <Grid item xs={2}><Button><Icon>edit</Icon></Button></Grid>
+                <Grid item xs={2}><Link to='/user/profile/EditEducation'><Icon>edit</Icon></Link></Grid>
 
               </div>
               <Typography className={classes.pos} color="textSecondary">

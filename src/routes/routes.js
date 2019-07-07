@@ -76,7 +76,7 @@ export const AppRoutes = () => {
         render={() => !loginStatus ? <Login /> : <EditEducation />} />
       <Route
         exact
-        path='/user/profile/edit'
+        path='/user/profile/EditMainDetails'
         render={() => !loginStatus ? <Login /> : <EditMainDetails />} />
       }
     />

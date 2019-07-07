@@ -68,7 +68,6 @@ export default function Inputs() {
   const classes = useStyles();
 
 
-  console.log('ok')
   function addExperience() {
     toast("Education Added !")
   }

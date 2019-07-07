@@ -95,7 +95,7 @@ export default function ButtonAppBar() {
                         </div>
 
                       </Grid>
-                      <Grid item xs={2}><Button><Icon>edit</Icon></Button></Grid>
+                      <Grid item xs={2}><Link to='/user/profile/EditMainDetails'><Icon>edit</Icon></Link></Grid>
 
                     </div>
 

@@ -14,6 +14,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Link } from 'react-router-dom'
 
 
 const useStyles = makeStyles(theme => ({
@@ -61,7 +62,7 @@ export default function Experience(props) {
                 <Typography className={classes.title} color="textPrimary" gutterBottom>
                   UX Designer
               </Typography>
-                <Grid item xs={2}><Button><Icon>edit</Icon></Button></Grid>
+                <Grid item xs={2}><Link to='/user/profile/EditExperience'><Icon>edit</Icon></Link></Grid>
               </div>
               <Typography className={classes.pos} color="textSecondary">
                 Deakin University
