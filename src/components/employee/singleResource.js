@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
 function FullWidthGrid(props) {
   const classes = useStyles();
   const [setOpportunity] = useContext(OpportunityContext)
-
-  const { id, location, position, type, date, content } = props.data
+  console.log(props)
+  const { id, location, position, type, date, content, title } = props.data
 
   function apply(props) {
     console.log(props)
@@ -46,20 +46,15 @@ function FullWidthGrid(props) {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Button className={classes.paper} onClick={() => { goBack(props) }}>Go back to the list</Button>
+
+        <Grid item xs={6} sm={6}>
+          <Paper className={classes.paper}>{title} </Paper>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>{position} <br /> {location} <br /> {date}</Paper>
+        <Grid item xs={6} sm={3}>
+          <Button className={classes.button}>Share</Button>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>{content}</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Button className={classes.button}>Save</Button>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Button className={classes.button} onClick={() => { apply(props) }}>Apply</Button>
         </Grid>
       </Grid>
     </div>

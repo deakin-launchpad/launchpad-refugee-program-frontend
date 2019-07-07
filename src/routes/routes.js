@@ -13,6 +13,10 @@ import OnBoarding from 'views/employeeViews/register/OnBoarding'
 import Profile from 'views/employeeViews/profile/Profile'
 import EmpolyeeHome from 'views/employeeViews/home/Home'
 import ApplicationView from 'views/employeeViews/home/ApplicationView'
+import EditEducation from '../views/employeeViews/profile/EditEducation'
+import EditExperience from '../views/employeeViews/profile/EditExperience'
+import EditMainDetails from '../views/employeeViews/profile/EditMainDetails'
+
 
 
 
@@ -57,11 +61,23 @@ export const AppRoutes = () => {
 
 
       {/*  Profile */}
-      <Route exact path='/user/profile' render={() => <Profile />} />
+      <Route exact path='/user/profile' render={() => !loginStatus ? <Login /> : <Profile />} />
       <Route
         exact
         path='/user/employee/home'
-        render={() => <EmpolyeeHome />} />
+        render={() => !loginStatus ? <Login /> : <EmpolyeeHome />} />
+      <Route
+        exact
+        path='/user/profile/editExperience'
+        render={() => !loginStatus ? <Login /> : <EditExperience />} />
+      <Route
+        exact
+        path='/user/profile/editEducation'
+        render={() => !loginStatus ? <Login /> : <EditEducation />} />
+      <Route
+        exact
+        path='/user/profile/edit'
+        render={() => !loginStatus ? <Login /> : <EditMainDetails />} />
       }
     />
 

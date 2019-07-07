@@ -24,8 +24,10 @@ const useStyles = makeStyles({
 
 export default function SimpleCard(props) {
   const classes = useStyles();
-  const [ setOpportunity] = useContext(OpportunityContext)
+  const [opportunity, setOpportunity] = useContext(OpportunityContext)
   const { id, location, position, type, date, content } = props.data
+  // const { id, location, position, type, date, content, toogle } = opportunity
+
 
   function openOpportunity() {
     setOpportunity({

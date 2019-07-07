@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
 import { red } from '@material-ui/core/colors';
+import { Link } from 'react-router-dom'
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,13 +44,15 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Avatar">
-            <Avatar alt="Remy Sharp" src={"https://image.flaticon.com/icons/svg/147/147144.svg"} className={classes.bigAvatar} />
-          </IconButton>
+          <Link to='/user/profile'><IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Avatar">
+            <Avatar alt="Remy Sharp" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBITLnZ3sR4MT3hvFOlphhQGwfsi8H2OH5EgLzKm6iR5McCZnt"} className={classes.bigAvatar} />
+          </IconButton></Link>
           <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>

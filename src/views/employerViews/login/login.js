@@ -47,8 +47,9 @@ export default function Login() {
   const classes = useStyles()
   const [emailId, setEmailId] = useState('')
   const [password, setPassword] = useState('')
-  const [setErrorStatus] = useState(false)
+  const [errorStatus, setErrorStatus] = useState(false)
   const [
+    loginStatus,
     setAccessToken,
     developerMode,
     setTriggerDeveloperMode

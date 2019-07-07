@@ -51,6 +51,12 @@ export default function FullWidthGrid() {
     })
   }
 
+  function goBack() {
+    setDirectToResource({
+      state: false,
+      resource: {}
+    })
+  }
 
   function openClose(param) {
     if (param === 'LA') {
@@ -65,102 +71,120 @@ export default function FullWidthGrid() {
   }
 
 
-  //expand container
+  //expanded containers
   let openLegal = (LegalAdvices.legalAdvices.map(legalAdvice => {
     return (<Grid container spacing={1} key={Math.random()}><Grid item xs={12} sm={1} >
-      <Paper className={classes.paper}>{legalAdvice.title}</Paper>
+      <Button className={classes.paper} onClick={() => { openResource(legalAdvice) }}>{legalAdvice.title}</Button>
     </Grid></Grid>)
   }))
   let openOrganizations = (Organizations.organizations.map(organization => {
     return (<Grid container spacing={1} key={Math.random()}><Grid item xs={12} sm={1} >
-      <Paper className={classes.paper}>{organization.title}</Paper>
+      <Button className={classes.paper} onClick={() => { openResource(organization) }}>{organization.title}</Button>
     </Grid></Grid>)
   }))
   let openPrograms = (Programs.programs.map(program => {
     return (<Grid container spacing={1} key={Math.random()}><Grid item xs={12} sm={1} >
-      <Paper className={classes.paper}>{program.title}</Paper>
+      <Button className={classes.paper} onClick={() => { openResource(program) }}>{program.title}</Button>
     </Grid></Grid>)
   }))
 
 
   return (
     <div className={classes.root}>
-
-      {/* {!directToResource.state ?
+      {console.log(directToResource)}
+      {directToResource.state ? <div>
+        <Grid item xs={12}>
+          <Button className={classes.paper} onClick={() => { goBack() }}>Go back to the list</Button>
+        </Grid>
         <SingleResource data={directToResource.resource} />
-        : */}
-      <div>
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <Paper className={classes.paperTitle}>Legal Advice</Paper>
-          </Grid>
-          {toogleLA ?
-
-            (<div>{openLegal}<Grid item xs={12} sm={1}>
-              <Button className={classes.button} onClick={() => { openClose('LA') }}>See Less</Button>
-            </Grid></div>)
-            :
-            <Grid container spacing={1}>
-              <Grid item xs={12} sm={2}>
-                <Button className={classes.paper} onClick={() => { openResource(LegalAdvices.legalAdvices[0]) }}>{LegalAdvices.legalAdvices[0].title}</Button>
-              </Grid>
-              <Grid item xs={12} sm={2}>
-                <Paper className={classes.paper}>{LegalAdvices.legalAdvices[1].title}</Paper>
-              </Grid>
-              <Grid item xs={12} sm={1}>
-                <Button className={classes.button} onClick={() => { openClose('LA') }}>See more</Button>
-              </Grid>
-            </Grid>}
-        </Grid>
-
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <Paper className={classes.paperTitle}>Organizations</Paper>
-          </Grid>
-
-          {toogleO ?
-
-            (<div>{openOrganizations}<Grid item xs={12} sm={1}>
-              <Button className={classes.button} onClick={() => { openClose('O') }}>See Less</Button>
-            </Grid></div>)
-            :
-            <Grid container spacing={1}>
-              <Grid item xs={12} sm={2}>
-                <Paper className={classes.paper}>{Organizations.organizations[0].title}</Paper>
-              </Grid>
-              <Grid item xs={12} sm={2}>
-                <Paper className={classes.paper}>{Organizations.organizations[1].title}</Paper>
-              </Grid>
-              <Grid item xs={12} sm={1}>
-                <Button className={classes.button} onClick={() => { openClose('O') }}>See more</Button>
-              </Grid>
-            </Grid>}
-        </Grid>
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <Paper className={classes.paperTitle}>Programs</Paper>
-          </Grid>
-
-          {toogleP ?
-
-            (<div>{openPrograms}<Grid item xs={12} sm={1}>
-              <Button className={classes.button} onClick={() => { openClose('P') }}>See Less</Button>
-            </Grid></div>)
-            :
-            <Grid container spacing={1}>
-              <Grid item xs={12} sm={2}>
-                <Paper className={classes.paper}>{Programs.programs[0].title}</Paper>
-              </Grid>
-              <Grid item xs={12} sm={2}>
-                <Paper className={classes.paper}>{Programs.programs[1].title}</Paper>
-              </Grid>
-              <Grid item xs={12} sm={1}>
-                <Button className={classes.button} onClick={() => { openClose('P') }}>See more</Button>
-              </Grid>
-            </Grid>}
-        </Grid>
       </div>
-      {/* } */}
+        :
+        <div>
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <Paper className={classes.paperTitle}>Legal Advice</Paper>
+            </Grid>
+            {toogleLA ?
+
+              (<div>
+                {/* { expanded}  */} {openLegal}
+
+                <Grid item xs={12} sm={1}>
+                  <Button className={classes.button} onClick={() => { openClose('LA') }}>See Less</Button>
+                </Grid></div>)
+              :
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.paper} onClick={() => { openResource(LegalAdvices.legalAdvices[0]) }}>{LegalAdvices.legalAdvices[0].title}</Button>
+                </Grid>
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.paper} onClick={() => { openResource(LegalAdvices.legalAdvices[1]) }}>{LegalAdvices.legalAdvices[1].title}</Button>
+                </Grid>
+                <Grid item xs={12} sm={1}>
+                  <Button className={classes.button} onClick={() => { openClose('LA') }}>See more</Button>
+                </Grid>
+              </Grid>}
+          </Grid>
+
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <Paper className={classes.paperTitle}>Organizations</Paper>
+            </Grid>
+
+            {toogleO ?
+
+              (<div>
+
+                {/* { expanded}  */}{openOrganizations}
+
+                <Grid item xs={12} sm={1}>
+                  <Button className={classes.button} onClick={() => { openClose('O') }}>See Less</Button>
+                </Grid></div>)
+              :
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.paper} onClick={() => { openResource(Organizations.organizations[0]) }}>{Organizations.organizations[0].title}</Button>
+                </Grid>
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.paper} onClick={() => { openResource(Organizations.organizations[0]) }}>{Organizations.organizations[1].title}</Button>
+                </Grid>
+                <Grid item xs={12} sm={1}>
+                  <Button className={classes.button} onClick={() => { openClose('O') }}>See more</Button>
+                </Grid>
+              </Grid>}
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <Paper className={classes.paperTitle}>Programs</Paper>
+            </Grid>
+
+            {toogleP ?
+
+              (<div>
+
+                {/* { expanded}  */}{openPrograms}
+
+                <Grid item xs={12} sm={1}>
+                  <Button className={classes.button} onClick={() => { openClose('P') }}>See Less</Button>
+                </Grid></div>)
+              :
+              <Grid container spacing={1}>
+
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.paper} onClick={() => { openResource(Programs.programs[0]) }}>{Programs.programs[0].title}</Button>
+                </Grid>
+
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.paper} onClick={() => { openResource(Programs.programs[0]) }}>{Programs.programs[1].title}</Button>
+                </Grid>
+
+                <Grid item xs={12} sm={1}>
+                  <Button className={classes.button} onClick={() => { openClose('P') }}>See more</Button>
+                </Grid>
+              </Grid>}
+          </Grid>
+        </div>
+      }
     </div>
   );
 }

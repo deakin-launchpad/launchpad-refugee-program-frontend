@@ -92,7 +92,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Login2
+          Login
         </Typography>
 
         <form className={classes.form} noValidate>
@@ -127,7 +127,7 @@ export default function Login() {
             className={classes.submit}
             onClick={validationCheck}
           >
-            Login2
+            Login
           </Button>
         </form>
       </div>

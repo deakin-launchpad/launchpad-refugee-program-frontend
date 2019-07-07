@@ -13,6 +13,8 @@ import { ProfileProvider } from './context/profileContext'
 import { NewsProvider } from './context/newsContext'
 
 
+
+
 function App() {
   useEffect(() => {
     document.title = process.env.REACT_APP_NAME;
@@ -28,6 +30,7 @@ function App() {
         </HomeContext>
       </ProfileProvider>
     </LoginProvider>
+
   );
 }
 

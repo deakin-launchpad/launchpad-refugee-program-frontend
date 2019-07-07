@@ -51,9 +51,10 @@ const useStyles = makeStyles(theme => ({
 
 
 function FilledTextFields(props) {
-  const [opportunity] = useContext(OpportunityContext)
+  const [opportunity, setOpportunity] = useContext(OpportunityContext)
   const [profile, setProfile] = useContext(ProfileContext)
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [values, setValues] = React.useState({
     name: 'Software Developer',
     age: '',
