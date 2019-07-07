@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 function FullWidthGrid(props) {
   const classes = useStyles();
-  const [ setOpportunity] = useContext(OpportunityContext)
+  const [setOpportunity] = useContext(OpportunityContext)
 
   const { id, location, position, type, date, content } = props.data
 

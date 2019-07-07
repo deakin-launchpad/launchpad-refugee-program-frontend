@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -9,12 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import TopBar from '../../../components/TopBar'
 import Opportunity from '../../../components/employee/Opportunity'
 import OpportunitiesData from '../../../dumbData/opportunities'
-import NewsData from '../../../dumbData/news'
 import { OpportunityContext, NewsContext, ResourcesContex } from '../../../context/homeContext'
 import News from '../../../components/employee/News'
 import NewsSinglePage from '../../../components/employee/NewsSinglePage'
 import OpporunitySingleFullPage from '../../../components/employee/OpportunitySingleFullPage'
-import { Button } from '@material-ui/core';
 import Resources from '../../../components/employee/Resources'
 import LegalAdvice from '../../../components/employee/legalAdvice'
 import Organizations from '../../../components/employee/organizations'
@@ -62,7 +60,7 @@ export default function FullWidthTabs() {
   function handleChangeIndex(index) {
     setValue(index);
   }
-  const { id, location, position, type, date, content, toogle } = opportunity
+
 
   return (
     <div className={classes.root} >

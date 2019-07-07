@@ -1,11 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { fontWeight } from '@material-ui/system';
-import LegalAdvices from '../../dumbData/resources/legalAdvices'
 import Organizations from '../../dumbData/resources/organizations'
-import Programs from '../../dumbData/resources/programs'
 import { Button } from '@material-ui/core';
 import { ResourcesContex } from '../../context/homeContext'
 

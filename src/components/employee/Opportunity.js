@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 export default function SimpleCard(props) {
   const classes = useStyles();
-  const [opportunity, setOpportunity] = useContext(OpportunityContext)
+  const [ setOpportunity] = useContext(OpportunityContext)
   const { id, location, position, type, date, content } = props.data
 
   function openOpportunity() {

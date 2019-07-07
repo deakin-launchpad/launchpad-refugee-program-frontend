@@ -1,9 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Icon from '@material-ui/core/Icon';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TopBar from '../../../components/TopBar'
 import { Button } from '@material-ui/core';
@@ -12,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 import SuccessModal from '../../../components/employee/SuccessApplication'
 import { OpportunityContext } from '../../../context/homeContext'
 import { ProfileContext } from '../../../context/profileContext'
-import { blue, red } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
 
 
@@ -54,10 +51,9 @@ const useStyles = makeStyles(theme => ({
 
 
 function FilledTextFields(props) {
-  const [opportunity, setOpportunity] = useContext(OpportunityContext)
+  const [opportunity] = useContext(OpportunityContext)
   const [profile, setProfile] = useContext(ProfileContext)
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const [values, setValues] = React.useState({
     name: 'Software Developer',
     age: '',

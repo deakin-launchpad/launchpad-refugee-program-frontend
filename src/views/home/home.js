@@ -11,11 +11,8 @@ import { Link } from 'react-router-dom'
 import { LoginContext } from '../../context/loginContext';
 
 const Home = () => {
-  const [redirectOnLogout, setRedirectOnLogout] = React.useState(false);
+  const [setRedirectOnLogout] = React.useState(false);
   const [
-    loginStatus,
-    setAccessToken,
-    developerMode,
     setTriggerDeveloperMode,
     setLoginStatus
   ] = useContext(LoginContext);

@@ -1,6 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
-import IconButton from '@material-ui/core/IconButton'
-import ExitToApp from '@material-ui/icons/ExitToApp'
+import React, { useState, useEffect } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -42,10 +40,9 @@ const useStyles = makeStyles(theme => ({
 export default function RegisterUser() {
   const classes = useStyles()
   const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorStatus, setErrorStatus] = useState(false)
+  const [setSurname] = useState('')
+  const [setEmail] = useState('')
+  const [setPassword] = useState('')
 
   function registerUser() {
     let data = {

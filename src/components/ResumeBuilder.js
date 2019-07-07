@@ -11,7 +11,6 @@ import EventNote from '@material-ui/icons/EventNote';
 import AddCircle from '@material-ui/icons/AddCircleOutline';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
