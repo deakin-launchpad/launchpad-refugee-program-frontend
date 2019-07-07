@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import { ProfileContext } from '../context/profileContext'
 
 
 
@@ -24,26 +25,73 @@ const useStyles = makeStyles(theme => ({
 
 export default function FilledTextFields() {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    name: 'Software Developer',
-    age: '',
+  const [profile, setProfile] = useContext(ProfileContext)
+  const [values, setValues] = useState({
+    name: "",
     multiline: 'Controlled',
-    currency: 'EUR',
   });
+  const [experience, setExperience] = useState({
+    position: '',
+    company: '',
+    start: "",
+    end: "",
+  });
+  const [searchingSetting, setSearchingSetting] = useState({
+    location: '',
+    field: ""
+  })
 
-  const handleChange = name => event => {
+
+  const handleChange = (name, input) => event => {
+    event.persist()
     setValues({ ...values, [name]: event.target.value });
+    setExperience(experience => {
+      return { ...experience, position: values.name }
+    });
+    profile.experience = [experience]
   };
+
+  const handleChangeCompany = () => event => {
+    event.persist()
+    setExperience(experience => {
+      return { ...experience, company: event.target.value }
+    });
+    profile.experience = [experience]
+  };
+  const handleChangeStartExp = () => event => {
+    event.persist()
+    setExperience(experience => {
+      return { ...experience, company: event.target.value }
+    });
+    profile.experience = [experience]
+
+  };
+  const handleChangeEndExp = () => event => {
+    event.persist()
+    setExperience(experience => {
+      return { ...experience, company: event.target.value }
+    });
+    profile.experience = [experience]
+
+  };
+  const handleChangePlace = () => event => {
+    event.persist()
+    setSearchingSetting(searchingSetting => {
+      return { ...searchingSetting, location: event.target.value }
+    });
+    profile.searchingSetting = searchingSetting
+  };
+
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         required
         id="filled-name"
-        label="filled-required"
+        label="Position"
         className={classes.textField}
         value={values.name}
-        onChange={handleChange('name')}
+        onChange={handleChange('name', 'position')}
         margin="normal"
         variant="filled"
       />
@@ -51,7 +99,7 @@ export default function FilledTextFields() {
         required
         id="filled-required"
         label="Company Name"
-        defaultValue="Apple"
+        onChange={handleChangeCompany()}
         className={classes.textField}
         margin="normal"
         variant="filled"
@@ -60,7 +108,7 @@ export default function FilledTextFields() {
         required
         id="filled-required"
         label="Start (mm / yyyy )"
-        defaultValue="11/2010"
+        onChange={handleChangeStartExp()}
         className={classes.textField}
         margin="normal"
         variant="filled"
@@ -69,7 +117,7 @@ export default function FilledTextFields() {
         required
         id="filled-required"
         label="End or Current"
-        defaultValue="Current"
+        onChange={handleChangeEndExp()}
         className={classes.textField}
         margin="normal"
         variant="filled"
@@ -81,7 +129,7 @@ export default function FilledTextFields() {
         required
         id="filled-date-input"
         label="City"
-        defaultValue="Melbourne"
+        onChange={handleChangePlace()}
         className={classes.textField}
         margin="normal"
         variant="filled"

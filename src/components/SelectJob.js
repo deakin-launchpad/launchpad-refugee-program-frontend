@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -6,6 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { ProfileContext } from '../context/profileContext'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,9 +25,16 @@ export default function ControlledOpenSelect() {
   const classes = useStyles();
   const [industryField, setIndustryField] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const [profile, setProfile] = useContext(ProfileContext)
 
   function handleChange(event) {
+    let { searchingSetting } = profile
+    searchingSetting.field = event.target.name
     setIndustryField(event.target.value);
+    setProfile(profile => {
+      return { ...profile, searchingSetting: searchingSetting }
+    })
+    console.log(profile)
   }
 
   function handleClose() {

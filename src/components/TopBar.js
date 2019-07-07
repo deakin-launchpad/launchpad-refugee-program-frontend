@@ -10,6 +10,8 @@ import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
 import { red } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom'
+import SideMenu from './SideMenu'
+import { Home } from '@material-ui/icons';
 
 
 const useStyles = makeStyles(theme => ({
@@ -53,10 +55,9 @@ export default function ButtonAppBar() {
           <Link to='/user/profile'><IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Avatar">
             <Avatar alt="Remy Sharp" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBITLnZ3sR4MT3hvFOlphhQGwfsi8H2OH5EgLzKm6iR5McCZnt"} className={classes.bigAvatar} />
           </IconButton></Link>
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
+          <Link to='/user/employee/home'><IconButton><Home /></IconButton></Link>
 
+          <SideMenu><MenuIcon /></SideMenu>
         </Toolbar>
       </AppBar>
     </div>

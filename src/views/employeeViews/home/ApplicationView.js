@@ -64,27 +64,11 @@ function FilledTextFields(props) {
 
 
   function handleClickOpen() {
-    console.log(opportunity)
-    console.log(profile)
-    // profile.appliedJobs.map(job => {
-    //   if (job.id === id) {
-    //     didApply = true
-    //     console.log('you have already applied for this job')
-    //   }
-    // })
-
-    setProfile({
-      id: "",
-      location: "",
-      email: "",
-      introduction: "",
-      avatar: "",
-      experience: [],
-      education: [],
-      volunteering: [],
-      appliedJobs: [opportunity],
-      savedJobs: [],
+    console.log('opportunity =====>', opportunity)
+    setProfile(profile => {
+      return { ...profile, appliedPositions: opportunity }
     })
+    console.log('profile =====>', profile)
   }
 
   function handleClickGoback() {

@@ -11,7 +11,7 @@ export const LoginProvider = props => {
   const { children } = props;
   const [loginStatus, setLoginStatus] = useState(window.localStorage.getItem('loginStatus'));
   const [developerMode] = useState(true); // developer mode setting
-  const [triggerDeveloperMode, setTriggerDeveloperMode] = useState(false);
+  const [triggerDeveloperMode, setTriggerDeveloperMode] = useState(true);
   const [accessToken, setAccessToken] = useState('');
   const [checkLocalStorageLoginStatus] = useState(
     window.localStorage.getItem('loginStatus')

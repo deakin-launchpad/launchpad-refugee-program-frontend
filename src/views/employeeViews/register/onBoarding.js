@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
@@ -12,6 +12,9 @@ import TabOnboard from '../../../components/TabOnboarding'
 import Map from '../../../components/Map'
 import AddPicture from '../../../components/AddPicture'
 import EndOnBoarding from '../../../components/EndOnboarding'
+import { ProfileContext } from '../../../context/profileContext'
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,9 +28,9 @@ export default function ProgressMobileStepper() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [profile, setProfile] = useContext(ProfileContext)
 
   function handleNext() {
-    console.log(activeStep)
     setActiveStep(prevActiveStep => prevActiveStep + 1);
   }
 
@@ -39,8 +42,7 @@ export default function ProgressMobileStepper() {
     <div>
 
 
-      {activeStep === 0 ?
-        <TabOnboard></TabOnboard> : ''}
+      {activeStep === 0 ? <TabOnboard /> : ''}
       {activeStep === 1 ? <SelectJob /> : ''}
       {activeStep === 2 ? <AddPicture /> : ''}
       {activeStep === 3 ? <EndOnBoarding /> : ''}

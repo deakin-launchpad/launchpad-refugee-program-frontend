@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import API from '../../../helpers/api'
 import { Link } from 'react-router-dom'
+import { ProfileContext } from '../../../context/profileContext'
 // import AutoFill from '../../../components/switchAutofill'
 
 const useStyles = makeStyles(theme => ({
@@ -40,24 +41,15 @@ const useStyles = makeStyles(theme => ({
 export default function RegisterUser() {
   const classes = useStyles()
   const [name, setName] = useState('')
-  const [setSurname] = useState('')
-  const [setEmail] = useState('')
-  const [setPassword] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [profile, setProfile] = useContext(ProfileContext)
 
   function registerUser() {
-    let data = {
-      firstName: 'andrea',
-      lastName: 'test',
-      emailId: 'andreas@test.com',
-      password: '1234',
-      mobile: '04154739311',
-      profile: {
-        dob: '02/02/2019',
-        gender: 'MALE'
-      }
-    }
-
-    API.registerUser(data)
+    setProfile({
+      firstName: name, lastName: lastName, password: password, email: email, img: "", experience: [], education: [], appliedPosition: [], savedPosition: []
+    })
   }
 
   useEffect(() => {
@@ -91,11 +83,11 @@ export default function RegisterUser() {
             margin='normal'
             required
             fullWidth
-            name='surname'
-            label='surname'
+            name='LastName'
+            label='LastName'
             type='text'
-            id='surname'
-            onChange={e => setSurname(e.target.value)}
+            id='LastName'
+            onChange={e => setLastName(e.target.value)}
             autoComplete='surname'
           />
           <TextField

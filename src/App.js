@@ -21,15 +21,15 @@ function App() {
   }, []);
 
   return (
-    <LoginProvider>
-      <ProfileProvider>
+    <ProfileProvider>
+      <LoginProvider>
         <HomeContext>
           <NewsProvider>
             <AppRoutes />
           </NewsProvider>
         </HomeContext>
-      </ProfileProvider>
-    </LoginProvider>
+      </LoginProvider>
+    </ProfileProvider>
 
   );
 }

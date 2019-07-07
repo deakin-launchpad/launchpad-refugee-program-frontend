@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import API from '../../../helpers/api'
 import { LoginContext } from '../../../context/loginContext'
-
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -134,15 +134,16 @@ export default function Login() {
           <Typography component='h1' variant='h5'>
             Or
         </Typography>
-          <Button
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-          >
-
-            Signup with Email
+          <Link to='/user/register/employee'>
+            <Button
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              Signup with Email
           </Button>
+          </Link>
           <Button
             fullWidth
             variant='contained'

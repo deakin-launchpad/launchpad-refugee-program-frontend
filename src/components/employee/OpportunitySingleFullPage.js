@@ -33,7 +33,6 @@ function FullWidthGrid(props) {
   const { id, location, position, type, date, content } = props.data
 
   function apply(props) {
-    console.log(props)
     setOpportunity({
       id, location, position, type, date, content, toogle: false
     })
