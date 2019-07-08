@@ -66,7 +66,7 @@ function FilledTextFields(props) {
   function handleClickOpen() {
     console.log('opportunity =====>', opportunity)
     setProfile(profile => {
-      return { ...profile, appliedPositions: opportunity }
+      return { ...profile, appliedPositions: [{ id: 1 }, { id: 2 }] }
     })
     console.log('profile =====>', profile)
   }

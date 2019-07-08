@@ -12,6 +12,7 @@ import { red } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom'
 import SideMenu from './SideMenu'
 import { Home } from '@material-ui/icons';
+import SearchMenu from '../components/employee/SearchMenu'
 
 
 const useStyles = makeStyles(theme => ({
@@ -56,8 +57,8 @@ export default function ButtonAppBar() {
             <Avatar alt="Remy Sharp" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBITLnZ3sR4MT3hvFOlphhQGwfsi8H2OH5EgLzKm6iR5McCZnt"} className={classes.bigAvatar} />
           </IconButton></Link>
           <Link to='/user/employee/home'><IconButton><Home /></IconButton></Link>
-
           <SideMenu><MenuIcon /></SideMenu>
+          <SearchMenu />
         </Toolbar>
       </AppBar>
     </div>

@@ -39,6 +39,11 @@ function FullWidthGrid(props) {
     props.history.push('/user/application')
   }
 
+function save(props) {
+  setProfile(profile => {
+    return {...profile, savedPositions: [{ id: 2 }, { id: 3 }]}
+  })
+}
   function goBack() {
     setOpportunity({
       id, location, position, type, date, content, toogle: false
@@ -57,7 +62,7 @@ function FullWidthGrid(props) {
           <Paper className={classes.paper}>{content}</Paper>
         </Grid>
         <Grid item xs={6} sm={3}>
-          <Button className={classes.button}>Save</Button>
+          <Button className={classes.button}onClick={() => { save(props) }}>Save</Button>
         </Grid>
         <Grid item xs={6} sm={3}>
           <Button className={classes.button} onClick={() => { apply(props) }}>Apply</Button>

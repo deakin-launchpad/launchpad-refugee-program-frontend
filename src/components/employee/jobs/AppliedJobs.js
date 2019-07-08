@@ -32,34 +32,35 @@ export default function SimpleCard(props) {
 
   function SingleView(singleOp) {
     setOpportunity(opportunity => {
-      return {...singleOp, toogle: true}
+      return { ...singleOp, toogle: true }
     })
   }
 
+  if (profile === undefined) return null;
+  if (profile.appliedPositions === undefined) return null;
+  if (profile.appliedPositions.length === 0) return null;
   return (
-
-    <div>
-      {profile.appliedPositions.map(job => {
-        return allJobsAvailable.map(available => {
-          if (job.id === available.id) {
-            return (<div key={job.id}>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {available.company}
-                  </Typography>
-                  <Typography variant="h5" component="h2">
-                    {available.position}
-                  </Typography>
-                  <Button color='primary' onClick={() => { SingleView(available) }}>Learn More</Button>
-                </CardContent>
-              </Card>
-            </div>)
-          }
-        })
+  <div>
+    {profile.appliedPositions.map(job => {
+      return allJobsAvailable.map(available => {
+        if (job.id === available.id) {
+          return (<div key={job.id}>
+            <Card className={classes.card}>
+              <CardContent>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                  {available.company}
+                </Typography>
+                <Typography variant="h5" component="h2">
+                  {available.position}
+                </Typography>
+                <Button color='primary' onClick={() => { SingleView(available) }}>Learn More</Button>
+              </CardContent>
+            </Card>
+          </div>)
+        }
       })
-      }
-    </div>
+    })
+    }
+  </div>)
 
-  );
 }

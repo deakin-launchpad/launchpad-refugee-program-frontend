@@ -38,7 +38,8 @@ export default function SimpleCard(props) {
       return { ...singleOp, toogle: true }
     })
   }
-
+  if (profile === undefined) return null;
+  if (profile.savedPositions === undefined) return null;
   return (
 
     <div>

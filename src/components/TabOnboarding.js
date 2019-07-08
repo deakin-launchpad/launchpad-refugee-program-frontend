@@ -44,7 +44,7 @@ export default function SimpleTabs() {
     setProfile({
       ...profile, searchingSetting: {
         location: event.target.value
-      },
+      }, appliedPositions: [{ id: 1 }, { id: 2 }]
     })
   }
 
