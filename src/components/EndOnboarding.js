@@ -44,7 +44,7 @@ export default function PaperSheet() {
         <Icon className={classes.icon}>home</Icon>
 
         <Typography variant="h5" component="h3">
-          Congratulation! <br></br>You arel all set, start looking into new opportunities</Typography>
+          Congratulation! <br></br>You are all set, start looking into new opportunities</Typography>
         <Link to='/user/employee/home'>Start</Link>
 
       </Paper>

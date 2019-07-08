@@ -79,15 +79,11 @@ export default function CustomizedMenus() {
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <Link to='/user/savedJobs'><Star /></Link>
+            <Done />
           </ListItemIcon>
-          <ListItemText primary="Saved" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <Link to='/user/appliedJobs'><Done /></Link>
-          </ListItemIcon>
-          <ListItemText primary="Applied" />
+          <Link to='/user/appliedJobs'>
+            <ListItemText primary="Applied" />
+          </Link>
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>

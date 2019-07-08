@@ -9,7 +9,7 @@ export const ResourcesContex = createContext()
 
 const HomeContext = ({ children }) => {
 
-  const [opportunity, setOpportunity] = useState({ id: "", location: "", position: "", type: "", date: "", content: "", toogle: false });
+  const [opportunity, setOpportunity] = useState({ id: "", location: "", position: "", type: "", date: "", content: "", company: "", toogle: false });
   const [news, setNews] = useState({ id: '', title: "", date: "", location: "", content: "", img: "", toogle: false });
   const [resources, setResources] = useState({
     legalAdvice: false, programs: false, organizations: false

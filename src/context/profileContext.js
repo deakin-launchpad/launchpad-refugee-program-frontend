@@ -6,7 +6,7 @@ export const ProfileContext = createContext()
 export const ProfileProvider = ({ children }) => {
 
   const [profile, setProfile] = useState({
-    firstName: '', lastName: '', password: "", email: '', img: "", position: "", experience: [{ position: "", company: "", startExp: "", endExp: "" }], education: [], appliedPosition: [], savedPosition: [], searchingSetting: { location: "", field: "" }
+    firstName: '', lastName: '', password: "", email: '', img: "", position: "", experience: [{ id: 1 }, { id: 2 }], education: [], appliedPositions: [{ id: 1 }, { id: 2 }], savedPositions: [{ id: 1 }, { id: 3 }], searchingSetting: { location: "", field: "" }
   });
 
 

@@ -16,6 +16,7 @@ import ApplicationView from 'views/employeeViews/home/ApplicationView'
 import EditEducation from '../views/employeeViews/profile/EditEducation'
 import EditExperience from '../views/employeeViews/profile/EditExperience'
 import EditMainDetails from '../views/employeeViews/profile/EditMainDetails'
+import AppliedJobs from '../views/employeeViews/jobs/Jobs'
 
 
 
@@ -80,6 +81,14 @@ export const AppRoutes = () => {
         render={() => !loginStatus ? <Login /> : <EditMainDetails />} />
       }
     />
+    {/*  Jobs */}
+      <Route
+        exact
+        path='/user/appliedJobs'
+        render={() => !loginStatus ? <Login /> : <AppliedJobs />} />
+      }
+    />
+    
 
     </Switch>
 
