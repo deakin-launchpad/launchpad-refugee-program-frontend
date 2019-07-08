@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -50,6 +50,7 @@ export default function FullWidthTabs() {
   const [opportunity] = useContext(OpportunityContext)
   const [news] = useContext(NewsContext)
   const [resources] = useContext(ResourcesContex)
+  const [searchMenu, setSearchMenu] = useState(false)
 
 
 
@@ -59,6 +60,10 @@ export default function FullWidthTabs() {
 
   function handleChangeIndex(index) {
     setValue(index);
+  }
+
+  function openSearch() {
+    searchMenu ? setSearchMenu(false) : setSearchMenu(true)
   }
 
 
@@ -73,7 +78,7 @@ export default function FullWidthTabs() {
           textColor="primary"
           variant="standard"
         >
-          <Tab label="Search" />
+          <Tab onClick={() => { openSearch() }} label="Search" />
           <Tab label="News" />
           <Tab label="Resources" />
         </Tabs>

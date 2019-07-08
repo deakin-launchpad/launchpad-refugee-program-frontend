@@ -32,14 +32,13 @@ export default function SimpleCard(props) {
 
   function SingleView(singleOp) {
     setOpportunity(opportunity => {
-      return { ...singleOp, toogle: true }
+      return {...singleOp, toogle: true}
     })
   }
 
   return (
 
     <div>
-
       {profile.appliedPositions.map(job => {
         return allJobsAvailable.map(available => {
           if (job.id === available.id) {
