@@ -41,7 +41,6 @@ export default function PaperSheet() {
   const [profile, setProfile] = useContext(ProfileContext);
 
   function addPicture() {
-    console.log("ok");
     toast("Picture Added !");
   }
   return (

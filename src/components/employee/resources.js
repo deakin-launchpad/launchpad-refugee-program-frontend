@@ -119,7 +119,6 @@ export default function FullWidthGrid() {
 
   return (
     <div className={classes.root}>
-      {console.log(directToResource)}
       {directToResource.state ? (
         <div>
           <Grid item xs={12}>

@@ -1,6 +1,7 @@
 const opportunities = [
   {
     id: 1,
+    employerEmail: "johnDoe@test.com",
     company: "Apple",
     position: "Administrator",
     date: "10 Jun. 2019",
@@ -12,6 +13,7 @@ const opportunities = [
   {
     id: 2,
     company: "Google",
+    employerEmail: "johnDoe@test.com",
     position: "Junior Developer",
     date: "11 Jun. 2019",
     type: "Full-time",
@@ -23,6 +25,7 @@ const opportunities = [
     id: 3,
     company: "Microsoft",
     position: "Accountant",
+    employerEmail: "johnDoe@test.com",
     date: "9 Jun. 2019",
     type: "Full-Time",
     location: "Sydney",

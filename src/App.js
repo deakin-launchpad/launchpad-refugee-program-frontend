@@ -18,15 +18,15 @@ function App() {
   }, []);
 
   return (
-    <ProfileProvider>
-      <LoginProvider>
+    <LoginProvider>
+      <ProfileProvider>
         <HomeContext>
           <NewsProvider>
             <AppRoutes />
           </NewsProvider>
         </HomeContext>
-      </LoginProvider>
-    </ProfileProvider>
+      </ProfileProvider>
+    </LoginProvider>
   );
 }
 

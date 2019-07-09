@@ -32,7 +32,6 @@ export default function ControlledOpenSelect() {
     setProfile(profile => {
       return { ...profile, searchingSetting: searchingSetting };
     });
-    console.log(profile);
   }
 
   function handleClose() {

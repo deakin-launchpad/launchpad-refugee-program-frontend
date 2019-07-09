@@ -56,7 +56,6 @@ export default function FullWidthGrid() {
             Back
           </Button>
         </Grid>
-        {console.log(LegalAdvices)}
         {LegalAdvices.legalAdvices.map(legalAdvice => {
           return (
             <Grid key={legalAdvice.id} item xs={12}>

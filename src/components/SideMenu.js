@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Face, Star, Done, Search, ExitToApp } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { LoginContext } from "../context/loginContext";
 
 const StyledMenu = withStyles({
   paper: {
@@ -42,6 +43,22 @@ const StyledMenuItem = withStyles(theme => ({
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [redirectOnLogout, setRedirectOnLogout] = useState(false);
+
+  const [
+    loginStatus,
+    setAccessToken,
+    developerMode,
+    setTriggerDeveloperMode,
+    setLoginStatus
+  ] = useContext(LoginContext);
+
+  function logoutUser() {
+    window.localStorage.clear();
+    setLoginStatus(false);
+    setTriggerDeveloperMode(false);
+    setRedirectOnLogout(true);
+  }
 
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
@@ -95,11 +112,9 @@ export default function CustomizedMenus() {
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <Link to="/user/logout">
-              <ExitToApp />
-            </Link>
+            <ExitToApp onClick={() => logoutUser()} />
           </ListItemIcon>
-          <ListItemText primary="Log Out" />
+          <ListItemText onClick={() => logoutUser()} primary="Log Out" />
         </StyledMenuItem>
       </StyledMenu>
     </div>
