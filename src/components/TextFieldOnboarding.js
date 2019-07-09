@@ -1,87 +1,81 @@
-import React, { useState, useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import { ProfileContext } from '../context/profileContext'
-
-
+import React, { useState, useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import { ProfileContext } from "../context/profileContext";
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   dense: {
-    marginTop: 16,
+    marginTop: 16
   },
   menu: {
-    width: 200,
-  },
+    width: 200
+  }
 }));
 
 export default function FilledTextFields() {
   const classes = useStyles();
-  const [profile, setProfile] = useContext(ProfileContext)
+  const [profile, setProfile] = useContext(ProfileContext);
   const [values, setValues] = useState({
     name: "",
-    multiline: 'Controlled',
+    multiline: "Controlled"
   });
   const [experience, setExperience] = useState({
-    position: '',
-    company: '',
+    position: "",
+    company: "",
     start: "",
-    end: "",
+    end: ""
   });
   const [searchingSetting, setSearchingSetting] = useState({
-    location: '',
+    location: "",
     field: ""
-  })
-
+  });
 
   const handleChange = (name, input) => event => {
-    event.persist()
+    event.persist();
     setValues({ ...values, [name]: event.target.value });
     setExperience(experience => {
-      return { ...experience, position: values.name }
+      return { ...experience, position: values.name };
     });
-    profile.experience = [experience]
+    profile.experience = [experience];
   };
 
   const handleChangeCompany = () => event => {
-    event.persist()
+    event.persist();
     setExperience(experience => {
-      return { ...experience, company: event.target.value }
+      return { ...experience, company: event.target.value };
     });
-    profile.experience = [experience]
+    profile.experience = [experience];
   };
   const handleChangeStartExp = () => event => {
-    event.persist()
+    event.persist();
     setExperience(experience => {
-      return { ...experience, company: event.target.value }
+      return { ...experience, company: event.target.value };
     });
-    profile.experience = [experience]
-
+    profile.experience = [experience];
   };
   const handleChangeEndExp = () => event => {
-    event.persist()
+    event.persist();
     setExperience(experience => {
-      return { ...experience, company: event.target.value }
+      return { ...experience, company: event.target.value };
     });
-    profile.experience = [experience]
-
+    profile.experience = [experience];
   };
   const handleChangePlace = () => event => {
-    event.persist()
+    event.persist();
     setSearchingSetting(searchingSetting => {
-      return { ...searchingSetting, location: event.target.value }
+      return { ...searchingSetting, location: event.target.value };
     });
-    profile.searchingSetting = searchingSetting
+    profile.searchingSetting = searchingSetting;
   };
-
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
@@ -91,7 +85,7 @@ export default function FilledTextFields() {
         label="Position"
         className={classes.textField}
         value={values.name}
-        onChange={handleChange('name', 'position')}
+        onChange={handleChange("name", "position")}
         margin="normal"
         variant="filled"
       />
@@ -122,9 +116,9 @@ export default function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-      <Typography component='h1' variant='h5'>
+      <Typography component="h1" variant="h5">
         In what area are you looking to find a job ?
-        </Typography>
+      </Typography>
       <TextField
         required
         id="filled-date-input"
@@ -134,7 +128,6 @@ export default function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
     </form>
   );
 }

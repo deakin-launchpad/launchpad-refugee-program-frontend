@@ -1,31 +1,29 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText'
-import MenuIcon from '@material-ui/icons/Menu';
-import { Face, Star, Done, Search, ExitToApp } from '@material-ui/icons';
-import { Link } from 'react-router-dom'
-
-
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Face, Star, Done, Search, ExitToApp } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const StyledMenu = withStyles({
   paper: {
-    border: '1px solid #d3d4d5',
-  },
+    border: "1px solid #d3d4d5"
+  }
 })(props => (
   <Menu
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'center',
+      vertical: "bottom",
+      horizontal: "center"
     }}
     transformOrigin={{
-      vertical: 'top',
-      horizontal: 'center',
+      vertical: "top",
+      horizontal: "center"
     }}
     {...props}
   />
@@ -33,13 +31,13 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
-    '&:focus': {
+    "&:focus": {
       backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
+      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+        color: theme.palette.common.white
+      }
+    }
+  }
 }))(MenuItem);
 
 export default function CustomizedMenus() {
@@ -75,24 +73,31 @@ export default function CustomizedMenus() {
           <ListItemIcon>
             <Face />
           </ListItemIcon>
-          <Link to='/user/profile'><ListItemText primary="My Profile" /></Link>
+          <Link to="/user/profile">
+            <ListItemText primary="My Profile" />
+          </Link>
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
             <Done />
           </ListItemIcon>
-          <Link to='/user/appliedJobs'>
+          <Link to="/user/appliedJobs">
             <ListItemText primary="Applied" />
           </Link>
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <Link to='/user/searchSetting'><Search /></Link>
+            <Link to="/user/searchSetting">
+              <Search />
+            </Link>
           </ListItemIcon>
           <ListItemText primary="Search Setting" />
-        </StyledMenuItem><StyledMenuItem>
+        </StyledMenuItem>
+        <StyledMenuItem>
           <ListItemIcon>
-            <Link to='/user/logout'><ExitToApp /></Link>
+            <Link to="/user/logout">
+              <ExitToApp />
+            </Link>
           </ListItemIcon>
           <ListItemText primary="Log Out" />
         </StyledMenuItem>

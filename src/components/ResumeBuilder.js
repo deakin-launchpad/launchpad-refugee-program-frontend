@@ -1,27 +1,27 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import EventNote from '@material-ui/icons/EventNote';
-import AddCircle from '@material-ui/icons/AddCircleOutline';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Collapse from "@material-ui/core/Collapse";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import EventNote from "@material-ui/icons/EventNote";
+import AddCircle from "@material-ui/icons/AddCircleOutline";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper
   },
   nested: {
-    paddingLeft: theme.spacing(4),
-  },
+    paddingLeft: theme.spacing(4)
+  }
 }));
 
 export default function NestedList() {
@@ -31,7 +31,6 @@ export default function NestedList() {
   function handleClick() {
     setOpen(!open);
   }
-
 
   return (
     <List
@@ -67,10 +66,10 @@ export default function NestedList() {
               id="outlined-bare"
               className={classes.textField}
               // defaultValue="Bare"
-              placeholder='Write an introduction here'
+              placeholder="Write an introduction here"
               margin="normal"
               variant="outlined"
-              inputProps={{ 'aria-label': 'bare' }}
+              inputProps={{ "aria-label": "bare" }}
             />
           </ListItem>
         </List>
@@ -94,23 +93,23 @@ export default function NestedList() {
               id="outlined-bare"
               className={classes.textField}
               // defaultValue="Bare"
-              placeholder='Add your skills'
+              placeholder="Add your skills"
               margin="normal"
               variant="outlined"
-              inputProps={{ 'aria-label': 'bare' }}
+              inputProps={{ "aria-label": "bare" }}
             />
           </ListItem>
         </List>
       </Collapse>
 
-      <ListItem >
+      <ListItem>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
         <ListItemText primary="Work Experiences" />
       </ListItem>
       {/* Instruction */}
-      <ListItem >
+      <ListItem>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>

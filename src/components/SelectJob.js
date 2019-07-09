@@ -1,40 +1,38 @@
-import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { ProfileContext } from '../context/profileContext'
-
-
+import React, { useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { ProfileContext } from "../context/profileContext";
 
 const useStyles = makeStyles(theme => ({
   button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
+    display: "block",
+    marginTop: theme.spacing(2)
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
-  },
+    minWidth: 120
+  }
 }));
 
 export default function ControlledOpenSelect() {
   const classes = useStyles();
-  const [industryField, setIndustryField] = React.useState('');
+  const [industryField, setIndustryField] = React.useState("");
   const [open, setOpen] = React.useState(false);
-  const [profile, setProfile] = useContext(ProfileContext)
+  const [profile, setProfile] = useContext(ProfileContext);
 
   function handleChange(event) {
-    let { searchingSetting } = profile
-    searchingSetting.field = event.target.name
+    let { searchingSetting } = profile;
+    searchingSetting.field = event.target.name;
     setIndustryField(event.target.value);
     setProfile(profile => {
-      return { ...profile, searchingSetting: searchingSetting }
-    })
-    console.log(profile)
+      return { ...profile, searchingSetting: searchingSetting };
+    });
+    console.log(profile);
   }
 
   function handleClose() {
@@ -47,15 +45,17 @@ export default function ControlledOpenSelect() {
 
   return (
     <div>
-      <Typography component='h1' variant='h5'>
+      <Typography component="h1" variant="h5">
         Which industry are you intereste in ?
-        </Typography>
+      </Typography>
       <form autoComplete="off">
         <Button className={classes.button} onClick={handleOpen}>
           Open the select
-      </Button>
+        </Button>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="demo-controlled-open-select">Industry Field</InputLabel>
+          <InputLabel htmlFor="demo-controlled-open-select">
+            Industry Field
+          </InputLabel>
           <Select
             open={open}
             onClose={handleClose}
@@ -63,8 +63,8 @@ export default function ControlledOpenSelect() {
             value={industryField}
             onChange={handleChange}
             inputProps={{
-              name: 'industryField',
-              id: 'demo-controlled-open-select',
+              name: "industryField",
+              id: "demo-controlled-open-select"
             }}
           >
             <MenuItem value="">
