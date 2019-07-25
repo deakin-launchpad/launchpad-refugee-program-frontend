@@ -11,6 +11,8 @@ import Container from "@material-ui/core/Container";
 import API from "../../../helpers/api";
 import { Link } from "react-router-dom";
 import { ProfileContext } from "../../../context/profileContext";
+import { LoginContext } from "../../../context/loginContext";
+import { DemoDataContext } from "context/demodataContext";
 // import AutoFill from '../../../components/switchAutofill'
 
 const useStyles = makeStyles(theme => ({
@@ -45,6 +47,34 @@ export default function RegisterUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [profile, setProfile] = useContext(ProfileContext);
+  const [
+    loginStatus,
+    setAccessToken,
+    triggerDeveloperMode,
+    setTriggerDeveloperMode,
+    setLoginStatus
+  ] = useContext(LoginContext);
+
+  const [data, setData] = useContext(DemoDataContext);
+  const [input1, setinput1] = useState("");
+  const [input2, setinput2] = useState("");
+  const [input3, setinput3] = useState("");
+  const [input4, setinput4] = useState("");
+  const [autofill, setautofill] = useState(false);
+
+  function autoFill(value) {
+    if (autofill == false) {
+      setinput1("");
+      setinput2("");
+      setinput3("");
+      setinput4("");
+    } else {
+      setinput1(data.firstName);
+      setinput2(data.lastName);
+      setinput3(data.emailId);
+      setinput4(data.password);
+    }
+  }
 
   function registerUser() {
     setProfile({
@@ -60,9 +90,10 @@ export default function RegisterUser() {
     });
   }
 
+  //developerMode
   useEffect(() => {
-    console.log(name);
-  }, []);
+    autoFill();
+  }, [autofill]);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -80,8 +111,9 @@ export default function RegisterUser() {
             required
             fullWidth
             id="name"
-            label="name"
+            label="Name"
             name="name"
+            value={input1}
             autoComplete="name"
             onChange={e => setName(e.target.value)}
             autoFocus
@@ -91,8 +123,9 @@ export default function RegisterUser() {
             margin="normal"
             required
             fullWidth
-            name="LastName"
-            label="LastName"
+            name="lastName"
+            value={input2}
+            label="Last Name"
             type="text"
             id="LastName"
             onChange={e => setLastName(e.target.value)}
@@ -104,6 +137,7 @@ export default function RegisterUser() {
             required
             fullWidth
             name="email"
+            value={input3}
             label="email"
             type="email"
             id="email"
@@ -116,9 +150,24 @@ export default function RegisterUser() {
             required
             fullWidth
             name="password"
+            value={input4}
             label="Password"
             type="password"
             id="password"
+            onChange={e => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="confirmPassword"
+            value={input4}
+            label="Confirm Password"
+            type="password"
+            id="confirmPassword"
             onChange={e => setPassword(e.target.value)}
             autoComplete="current-password"
           />
@@ -146,6 +195,16 @@ export default function RegisterUser() {
               Register
             </Button>
           </Link>
+          {triggerDeveloperMode && (
+            <Button
+              align="right"
+              variant="contained"
+              className={classes.button}
+              onClick={() => setautofill(prevautofill => !prevautofill)}
+            >
+              Demo
+            </Button>
+          )}
         </form>
       </div>
       <Box mt={5}>

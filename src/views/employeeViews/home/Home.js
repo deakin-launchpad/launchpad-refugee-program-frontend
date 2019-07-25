@@ -1,11 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
+import {
+  Tabs,
+  Tab,
+  Switch,
+  Typography,
+  Collapse,
+  makeStyles,
+  useTheme
+} from "@material-ui/core";
 import TopBar from "../../../components/TopBar";
 import Opportunity from "../../../components/employee/Opportunity";
 import OpportunitiesData from "../../../dumbData/opportunities";
@@ -21,6 +26,8 @@ import Resources from "../../../components/employee/Resources";
 import LegalAdvice from "../../../components/employee/legalAdvice";
 import Organizations from "../../../components/employee/organizations";
 import Programs from "../../../components/employee/programs";
+import SearchCurtain from "../../../components/employee/SearchCurtain";
+import MaterialTable from "material-table";
 
 function TabContainer({ children, dir }) {
   return (
@@ -49,19 +56,49 @@ export default function FullWidthTabs() {
   const [opportunity] = useContext(OpportunityContext);
   const [news] = useContext(NewsContext);
   const [resources] = useContext(ResourcesContex);
-  const [searchMenu, setSearchMenu] = useState(false);
+  const [searchMenu, setSearchMenu] = useState(true);
+  const [checked, setChecked] = React.useState(false);
 
+  const [curtain, setCurtain] = useState({
+    height: "0vh",
+    transition: "height .5s",
+    overflow: "hidden",
+    display: "flex",
+    padding: "0 20px",
+    marginTop: "2px"
+  });
+
+  function handleChangeCollapse() {
+    setChecked(prev => !prev);
+  }
   function handleChange(event, newValue) {
     setValue(newValue);
   }
-
   function handleChangeIndex(index) {
     setValue(index);
   }
 
-  function openSearch() {
-    searchMenu ? setSearchMenu(false) : setSearchMenu(true);
-  }
+  useEffect(() => {
+    return () => {
+      setChecked(false);
+    };
+  }, [value]);
+
+  // const [state, setState] = React.useState({
+  //   columns: [
+  //     { title: "Name", field: "name" },
+  //     { title: "Surname", field: "surname" }
+  //   ],
+  //   data: [
+  //     { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+  //     {
+  //       name: "Zerya Betül",
+  //       surname: "Baran",
+  //       birthYear: 2017,
+  //       birthCity: 34
+  //     }
+  //   ]
+  // });
 
   return (
     <div className={classes.root}>
@@ -76,7 +113,7 @@ export default function FullWidthTabs() {
         >
           <Tab
             onClick={() => {
-              openSearch();
+              handleChangeCollapse();
             }}
             label="Search"
           />
@@ -84,6 +121,11 @@ export default function FullWidthTabs() {
           <Tab label="Resources" />
         </Tabs>
       </AppBar>
+
+      <Collapse in={checked}>
+        <SearchCurtain />
+      </Collapse>
+
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
@@ -97,6 +139,15 @@ export default function FullWidthTabs() {
               <Typography style={{ backgroundColor: "#e0e0e0" }}>
                 We found {OpportunitiesData.opportunities.length} opportunities
               </Typography>
+              {/* <MaterialTable
+                title="Editable Example"
+                columns={state.columns}
+                data={state.data}
+                options={{
+                  search: false
+                }}
+              /> */}
+
               {OpportunitiesData.opportunities.map(opportunity => {
                 return (
                   <div key={opportunity.id} style={{ margin: "8px 0" }}>

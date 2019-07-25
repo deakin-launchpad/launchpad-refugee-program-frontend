@@ -46,11 +46,20 @@ export default function PaperSheet() {
   return (
     <div>
       <Paper className={classes.root}>
+        <Typography variant="h5" component="h3">
+          Add your profile Picture
+        </Typography>
         <div style={{ display: "flex" }}>
           <Icon className={classes.icon} onClick={() => addPicture()}>
             add_circle
           </Icon>
-          <Grid container justify="center" alignItems="center" spacing={6}>
+          <Grid
+            onClick={() => addPicture()}
+            container
+            justify="center"
+            alignItems="center"
+            spacing={6}
+          >
             <Avatar
               alt="Remy Sharp"
               src={"https://image.flaticon.com/icons/svg/147/147144.svg"}
@@ -58,9 +67,6 @@ export default function PaperSheet() {
             />
           </Grid>
         </div>
-        <Typography variant="h5" component="h3">
-          Add your profile Picture
-        </Typography>
         <div style={{ display: "flex" }}>
           <ToastContainer autoClose={1000} />
 

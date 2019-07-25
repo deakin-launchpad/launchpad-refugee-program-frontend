@@ -15,7 +15,7 @@ const Home = () => {
   const [
     loginStatus,
     setAccessToken,
-    developerMode,
+    triggerDeveloperMode,
     setTriggerDeveloperMode,
     setLoginStatus
   ] = useContext(LoginContext);

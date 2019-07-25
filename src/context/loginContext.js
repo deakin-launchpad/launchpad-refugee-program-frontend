@@ -43,7 +43,7 @@ export const LoginProvider = props => {
       value={[
         loginStatus,
         setAccessToken,
-        developerMode,
+        triggerDeveloperMode,
         setTriggerDeveloperMode,
         setLoginStatus
       ]}

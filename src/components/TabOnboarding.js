@@ -42,24 +42,23 @@ export default function SimpleTabs() {
       ...profile,
       searchingSetting: {
         location: event.target.value
-      },
-      appliedPositions: [{ id: 1 }, { id: 2 }]
+      }
+      // appliedPositions: [{ id: 1 }, { id: 2 }]
     });
   }
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Typography component="h1" variant="h5">
-          First of all
-          <br />
-          Have you already had some work experience before ?
-        </Typography>
-        <Tabs value={value} onChange={handleChange}>
-          <Tab style={{ backgroundColor: "transparent" }} label="Yes I have" />
-          <Tab label="No, I am new" />
-        </Tabs>
-      </AppBar>
+      <AppBar position="static" />
+      <Typography component="h1" variant="h5">
+        First of all
+        <br />
+        Have you already had some work experience before ?
+      </Typography>
+      <Tabs value={value} onChange={handleChange}>
+        <Tab style={{ backgroundColor: "transparent" }} label="Yes I have" />
+        <Tab label="No, I am new" />
+      </Tabs>
       {value === 0 && (
         <TabContainer>
           <Typography component="h1" variant="h5">

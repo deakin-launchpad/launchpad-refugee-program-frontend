@@ -34,4 +34,10 @@ const opportunities = [
   }
 ];
 
+export const jobField = {
+  10: "Chemical industry",
+  20: "Defense industry",
+  30: "nergy industry"
+};
+
 export default { opportunities };

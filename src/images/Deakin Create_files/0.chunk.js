@@ -57661,7 +57661,7 @@ function (_React$Component) {
       });
       return match ? react__WEBPACK_IMPORTED_MODULE_2___default.a.cloneElement(element, {
         location: location,
-        computedMatch: match
+        computedmatch: match
       }) : null;
     });
   };

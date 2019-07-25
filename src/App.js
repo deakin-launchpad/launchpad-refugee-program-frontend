@@ -11,6 +11,8 @@ import { LoginProvider } from "./context/loginContext";
 import HomeContext from "./context/homeContext";
 import { ProfileProvider } from "./context/profileContext";
 import { NewsProvider } from "./context/newsContext";
+import { DeveloperModeProvider } from "./context/developerModeContext";
+import { DemoDataProvider } from "./context/demodataContext";
 
 function App() {
   useEffect(() => {
@@ -19,13 +21,17 @@ function App() {
 
   return (
     <LoginProvider>
-      <ProfileProvider>
-        <HomeContext>
-          <NewsProvider>
-            <AppRoutes />
-          </NewsProvider>
-        </HomeContext>
-      </ProfileProvider>
+      <DeveloperModeProvider>
+        <DemoDataProvider>
+          <ProfileProvider>
+            <HomeContext>
+              <NewsProvider>
+                <AppRoutes />
+              </NewsProvider>
+            </HomeContext>
+          </ProfileProvider>
+        </DemoDataProvider>
+      </DeveloperModeProvider>
     </LoginProvider>
   );
 }

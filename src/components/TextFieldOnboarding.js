@@ -1,13 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
+import { TextField, Typography, Button } from "@material-ui/core";
 import { ProfileContext } from "../context/profileContext";
+import { LoginContext } from "../context/loginContext";
+import { DemoDataContext } from "../context/demodataContext";
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    justifyPosition: "center"
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -23,7 +25,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function FilledTextFields() {
   const classes = useStyles();
+  const [
+    loginStatus,
+    setAccessToken,
+    triggerDeveloperMode,
+    setTriggerDeveloperMode,
+    setLoginStatus
+  ] = useContext(LoginContext);
+  const [data, setData] = useContext(DemoDataContext);
   const [profile, setProfile] = useContext(ProfileContext);
+  const [input, setInput] = useState({
+    inputData1: "",
+    inputData2: "",
+    inputData3: "",
+    inputData4: "",
+    inputData5: ""
+  });
+  const [autofill, setAutofill] = useState(false);
   const [values, setValues] = useState({
     name: "",
     multiline: "Controlled"
@@ -39,44 +57,71 @@ export default function FilledTextFields() {
     field: ""
   });
 
+  function autoFill() {
+    if (autofill == false) {
+      setInput("");
+    } else {
+      setInput({
+        inputData1: data.position,
+        inputData2: data.companyName,
+        inputData3: data.searchSetting.location
+      });
+    }
+  }
+
   const handleChange = (name, input) => event => {
     event.persist();
     setValues({ ...values, [name]: event.target.value });
     setExperience(experience => {
       return { ...experience, position: values.name };
     });
-    profile.experience = [experience];
+    setProfile(profile => {
+      return { ...profile, experience: experience };
+    });
   };
 
   const handleChangeCompany = () => event => {
     event.persist();
+    console.log(profile);
     setExperience(experience => {
       return { ...experience, company: event.target.value };
     });
-    profile.experience = [experience];
+    setProfile(profile => {
+      return { ...profile, experience: experience };
+    });
   };
+
   const handleChangeStartExp = () => event => {
     event.persist();
     setExperience(experience => {
-      return { ...experience, company: event.target.value };
+      return { ...experience, start: event.target.value };
     });
-    profile.experience = [experience];
+    setProfile(profile => {
+      return { ...profile, experience: experience };
+    });
   };
+
   const handleChangeEndExp = () => event => {
     event.persist();
     setExperience(experience => {
-      return { ...experience, company: event.target.value };
+      return { ...experience, end: event.target.value };
     });
-    profile.experience = [experience];
+    setProfile(profile => {
+      return { ...profile, experience: experience };
+    });
   };
   const handleChangePlace = () => event => {
     event.persist();
     setSearchingSetting(searchingSetting => {
       return { ...searchingSetting, location: event.target.value };
     });
-    profile.searchingSetting = searchingSetting;
+    setProfile(profile => {
+      return { ...profile, searchingSetting: searchingSetting };
+    });
   };
-
+  useEffect(() => {
+    autoFill();
+  }, [autofill]);
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
@@ -84,7 +129,7 @@ export default function FilledTextFields() {
         id="filled-name"
         label="Position"
         className={classes.textField}
-        value={values.name}
+        value={input.inputData1}
         onChange={handleChange("name", "position")}
         margin="normal"
         variant="filled"
@@ -93,29 +138,36 @@ export default function FilledTextFields() {
         required
         id="filled-required"
         label="Company Name"
+        value={input.inputData2}
         onChange={handleChangeCompany()}
         className={classes.textField}
         margin="normal"
         variant="filled"
       />
+
       <TextField
-        required
-        id="filled-required"
-        label="Start (mm / yyyy )"
+        id="date"
+        label="Start Date"
+        type="date"
         onChange={handleChangeStartExp()}
         className={classes.textField}
-        margin="normal"
-        variant="filled"
+        placeholder="Start date"
+        InputLabelProps={{
+          shrink: true
+        }}
       />
       <TextField
-        required
-        id="filled-required"
-        label="End or Current"
+        id="date"
+        label="End Date"
+        type="date"
         onChange={handleChangeEndExp()}
         className={classes.textField}
-        margin="normal"
-        variant="filled"
+        placeholder="Start date"
+        InputLabelProps={{
+          shrink: true
+        }}
       />
+
       <Typography component="h1" variant="h5">
         In what area are you looking to find a job ?
       </Typography>
@@ -123,11 +175,22 @@ export default function FilledTextFields() {
         required
         id="filled-date-input"
         label="City"
+        value={input.inputData3}
         onChange={handleChangePlace()}
         className={classes.textField}
         margin="normal"
         variant="filled"
       />
+      {triggerDeveloperMode && (
+        <Button
+          align="right"
+          variant="contained"
+          className={classes.button}
+          onClick={() => setAutofill(prevautofill => !prevautofill)}
+        >
+          Demo
+        </Button>
+      )}
     </form>
   );
 }

@@ -37,10 +37,6 @@ export default function ProgressMobileStepper() {
 
   return (
     <div>
-      {activeStep === 0 ? <TabOnboard /> : ""}
-      {activeStep === 1 ? <SelectJob /> : ""}
-      {activeStep === 2 ? <AddPicture /> : ""}
-      {activeStep === 3 ? <EndOnBoarding /> : ""}
       <MobileStepper
         variant="progress"
         steps={4}
@@ -68,6 +64,10 @@ export default function ProgressMobileStepper() {
           </Button>
         }
       />
+      {activeStep === 0 ? <TabOnboard /> : ""}
+      {activeStep === 1 ? <SelectJob /> : ""}
+      {activeStep === 2 ? <AddPicture /> : ""}
+      {activeStep === 3 ? <EndOnBoarding /> : ""}
     </div>
   );
 }
