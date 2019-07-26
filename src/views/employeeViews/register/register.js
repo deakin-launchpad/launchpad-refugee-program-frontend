@@ -56,7 +56,7 @@ export default function RegisterUser() {
   ] = useContext(LoginContext);
 
   const [data, setData] = useContext(DemoDataContext);
-  const [input1, setinput1] = useState("");
+  const [input1, setinput1] = useState("ss");
   const [input2, setinput2] = useState("");
   const [input3, setinput3] = useState("");
   const [input4, setinput4] = useState("");
@@ -88,6 +88,17 @@ export default function RegisterUser() {
       appliedPosition: [],
       savedPosition: []
     });
+
+    let data = {
+      first_name: name,
+      last_name: lastName,
+      emailId: email,
+      phoneNumber: "041414141",
+      password,
+      linkedinId: ""
+    };
+
+    API.registerUser(data);
   }
 
   //developerMode
@@ -113,7 +124,7 @@ export default function RegisterUser() {
             id="name"
             label="Name"
             name="name"
-            value={input1}
+            // value={input1}
             autoComplete="name"
             onChange={e => setName(e.target.value)}
             autoFocus
@@ -124,7 +135,7 @@ export default function RegisterUser() {
             required
             fullWidth
             name="lastName"
-            value={input2}
+            // value={input2}
             label="Last Name"
             type="text"
             id="LastName"
@@ -137,7 +148,7 @@ export default function RegisterUser() {
             required
             fullWidth
             name="email"
-            value={input3}
+            // value={input3}
             label="email"
             type="email"
             id="email"
@@ -150,7 +161,7 @@ export default function RegisterUser() {
             required
             fullWidth
             name="password"
-            value={input4}
+            // value={input4}
             label="Password"
             type="password"
             id="password"
@@ -164,7 +175,7 @@ export default function RegisterUser() {
             required
             fullWidth
             name="confirmPassword"
-            value={input4}
+            // value={input4}
             label="Confirm Password"
             type="password"
             id="confirmPassword"
