@@ -35,10 +35,10 @@ const Home = () => {
       </IconButton>
       <div className="container-reg">
         <IconButton color="inherit">
-          <Link to="/user/register/employer"> Employer</Link>
+          <a href="http://localhost:3000/login"> Employer</a>
         </IconButton>
         <IconButton color="inherit">
-          <Link to="/user/register/employee" className="link-reg">
+          <Link to="/login" className="link-reg">
             {" "}
             Employee
           </Link>

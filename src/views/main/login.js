@@ -2,7 +2,7 @@
  *  Created by Nirav Bhimani
  **/
 
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,10 +12,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import API from "../../../helpers/api";
-import { LoginContext, DemoDataContext } from "../../../context";
+import API from "../../helpers/api";
+import { LoginContext } from "../../context/loginContext";
+import { DemoDataContext } from "../../context/demodataContext";
+
 import { Link } from "react-router-dom";
-import AutoFill from "../../../components/switchAutofill";
+import AutoFill from "../../components/SwitchAutofill";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -47,8 +49,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState();
+  const [password, setPassword] = useState();
   const [data, setData] = useContext(DemoDataContext);
   const [errorStatus, setErrorStatus] = useState(false);
   const [
@@ -59,28 +61,25 @@ export default function Login() {
     setLoginStatus
   ] = useContext(LoginContext);
 
-  const [input1, setinput1] = useState("");
-  const [input2, setinput2] = useState("");
-  const [autofill, setautofill] = useState(false);
+  const [valueDevEmail, setValueDevEmail] = useState();
+  const [valueDevPsw, setValueDevPsw] = useState();
 
-  function autoFill(value) {
-    if (autofill == false) {
-      setinput1("");
-      setinput2("");
-    } else {
-      setinput1(data.email);
-      setinput2(data.password);
-    }
+  // const [autofill, setautofill] = useState(false);
+
+  function autoFill() {
+    triggerDeveloperMode ? setValueDevEmail(data.emailId) : setValueDevEmail();
+    triggerDeveloperMode ? setValueDevPsw(data.password) : setValueDevPsw();
   }
 
   function validationCheck() {
-    if (!developerMode) {
-      const email = emailId;
-      const pwd = password;
+    if (!triggerDeveloperMode) {
+      const email = valueDevEmail;
+      const pwd = valueDevPsw;
       // let emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       // let emailPatternTest = emailPattern.test(email);
+      console.log("here");
       if (email && pwd) {
-        API.loginUser({ emailId, password }, setAccessToken);
+        API.loginUser({ email, pwd }, setAccessToken);
         return true;
       } else if (email === undefined && pwd === undefined) {
         setErrorStatus(true);
@@ -105,10 +104,10 @@ export default function Login() {
       setTriggerDeveloperMode(true);
     }
   }
-  //developerMode
+
   useEffect(() => {
     autoFill();
-  }, [autofill]);
+  }, [triggerDeveloperMode]);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -128,6 +127,7 @@ export default function Login() {
             id="email"
             label="Email Address"
             name="email"
+            value={valueDevEmail}
             autoComplete="email"
             onChange={e => setEmailId(e.target.value)}
             autoFocus
@@ -138,6 +138,7 @@ export default function Login() {
             required
             fullWidth
             name="password"
+            value={valueDevPsw}
             label="Password"
             type="password"
             id="password"
@@ -174,16 +175,6 @@ export default function Login() {
           >
             Signup with Linkedin
           </Button>
-          {triggerDeveloperMode && (
-            <Button
-              align="right"
-              variant="contained"
-              className={classes.button}
-              onClick={() => setautofill(prevautofill => !prevautofill)}
-            >
-              Demo
-            </Button>
-          )}
         </form>
       </div>
       <Box mt={5}>

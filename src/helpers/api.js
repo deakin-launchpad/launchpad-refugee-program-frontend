@@ -8,7 +8,6 @@ import axios from "axios";
 class API {
   // POST Request
   registerUser = data => {
-    console.log(data);
     axios({
       method: "post",
       url: "http://localhost:8000/api/user/register",
@@ -21,7 +20,7 @@ class API {
   loginUser = (data, accessToken) => {
     axios({
       method: "post",
-      url: "http://10.1.40.16.209:8011/api/user/login",
+      url: "http://localhost:8000/api/user/login",
       data: data
     })
       .then(response => accessToken(response.data.data.accessToken))

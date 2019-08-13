@@ -56,7 +56,7 @@ export default function RegisterUser() {
   ] = useContext(LoginContext);
 
   const [data, setData] = useContext(DemoDataContext);
-  const [input1, setinput1] = useState("ss");
+  const [input1, setinput1] = useState("");
   const [input2, setinput2] = useState("");
   const [input3, setinput3] = useState("");
   const [input4, setinput4] = useState("");

@@ -4,13 +4,13 @@
 
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Login from "views/employerViews/login/login";
-import Home from "views/home/home";
+import Login from "views/main/login";
+import Home from "views/main/home";
+import UserHome from "views/employeeViews/home/Home.js";
 import RegisterEmployer from "views/employerViews/register/register";
 import RegisterEmployee from "views/employeeViews/register/Register";
 import OnBoarding from "views/employeeViews/register/OnBoarding";
 import Profile from "views/employeeViews/profile/Profile";
-import EmpolyeeHome from "views/employeeViews/home/Home";
 import ApplicationView from "views/employeeViews/home/ApplicationView";
 import EditEducation from "../views/employeeViews/profile/EditEducation";
 import EditExperience from "../views/employeeViews/profile/EditExperience";
@@ -35,9 +35,7 @@ export const AppRoutes = () => {
   const developerMODEToggle = () => {
     if (triggerDeveloperMode) setTriggerDeveloperMode(false);
     else setTriggerDeveloperMode(true);
-    console.log(triggerDeveloperMode);
   };
-  console.log(triggerDeveloperMode);
   return (
     <div>
       <div>
@@ -49,14 +47,8 @@ export const AppRoutes = () => {
         />
       </div>
       <Switch>
-        {/* home */}
-        <Route
-          exact
-          path="/"
-          render={() =>
-            !loginStatus ? <Redirect to={{ pathname: "/login" }} /> : <Home />
-          }
-        />
+        {/* choose register path */}
+        <Route exact path="/" render={() => <Home />} />
         <Route
           exact
           path="/user/application"
@@ -69,13 +61,7 @@ export const AppRoutes = () => {
           }
         />
         {/* Login */}
-        <Route
-          exact
-          path="/login"
-          render={() =>
-            !loginStatus ? <Login /> : <Redirect to={{ pathname: "/" }} />
-          }
-        />
+        <Route exact path="/login" render={() => <Login />} />} />
         {/* Register */}
         <Route
           exact
@@ -101,7 +87,7 @@ export const AppRoutes = () => {
         <Route
           exact
           path="/user/employee/home"
-          render={() => (!loginStatus ? <Login /> : <EmpolyeeHome />)}
+          render={() => (!loginStatus ? <Login /> : <UserHome />)}
         />
         <Route
           exact
