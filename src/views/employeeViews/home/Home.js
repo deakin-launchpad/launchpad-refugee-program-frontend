@@ -22,10 +22,10 @@ import {
 import News from "components/employee/News";
 import NewsSinglePage from "components/employee/NewsSinglePage";
 import OpporunitySingleFullPage from "components/employee/OpportunitySingleFullPage";
-import Resources from "components/employee/Resources";
+import Resources from "components/employee/resources";
 import LegalAdvice from "components/employee/LegalAdvice";
-import Organizations from "components/employee/Organizations";
-import Programs from "components/employee/Programs";
+import Organizations from "components/employee/organizations";
+import Programs from "components/employee/programs";
 import SearchCurtain from "components/employee/SearchCurtain";
 import MaterialTable from "material-table";
 

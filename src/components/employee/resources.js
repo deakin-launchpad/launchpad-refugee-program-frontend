@@ -8,7 +8,7 @@ import Organizations from "dumbData/resources/organizations";
 import Programs from "dumbData/resources/programs";
 import { Button } from "@material-ui/core";
 import { ResourcesContex } from "context/homeContext";
-import SingleResource from "./SingleResource";
+import SingleResource from "./singleResource";
 
 const useStyles = makeStyles(theme => ({
   root: {

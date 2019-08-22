@@ -4,18 +4,18 @@
 
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Login from "views/main/Login";
-import Home from "views/main/Home";
+import Login from "views/main/login";
+import Home from "views/main/home";
 import UserHome from "views/employeeViews/home/Home.js";
-import RegisterEmployer from "views/employerViews/register/Register";
-import RegisterEmployee from "views/employeeViews/register/Register";
-import OnBoarding from "views/employeeViews/register/OnBoarding";
-import Profile from "views/employeeViews/profile/Profile";
+import RegisterEmployer from "views/employerViews/register/register";
+import RegisterEmployee from "views/employeeViews/register/register";
+import OnBoarding from "views/employeeViews/register/onBoarding";
+import Profile from "views/employeeViews/profile/profile";
 import ApplicationView from "views/employeeViews/home/ApplicationView";
-import EditEducation from "../views/employeeViews/profile/EditEducation";
-import EditExperience from "../views/employeeViews/profile/EditExperience";
-import EditMainDetails from "../views/employeeViews/profile/EditMainDetails";
-import AppliedJobs from "../views/employeeViews/jobs/Jobs";
+import EditEducation from "views/employeeViews/profile/EditEducation";
+import EditExperience from "views/employeeViews/profile/EditExperience";
+import EditMainDetails from "views/employeeViews/profile/EditMainDetails";
+import AppliedJobs from "views/employeeViews/jobs/Jobs";
 import { Button, Switch as SwitchComponent } from "@material-ui/core";
 
 // Import Context
@@ -33,8 +33,7 @@ export const AppRoutes = () => {
 
   // const [developerMODE, setDeveloperMode] = useContext(DeveloperModeContext);
   const developerMODEToggle = () => {
-    if (triggerDeveloperMode) setTriggerDeveloperMode(false);
-    else setTriggerDeveloperMode(true);
+    setTriggerDeveloperMode(!triggerDeveloperMode);
   };
   return (
     <div>
@@ -56,8 +55,8 @@ export const AppRoutes = () => {
             !loginStatus ? (
               <Redirect to={{ pathname: "/login" }} />
             ) : (
-              <ApplicationView />
-            )
+                <ApplicationView />
+              )
           }
         />
         {/* Login */}
