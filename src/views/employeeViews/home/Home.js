@@ -11,22 +11,22 @@ import {
   makeStyles,
   useTheme
 } from "@material-ui/core";
-import TopBar from "../../../components/TopBar";
-import Opportunity from "../../../components/employee/Opportunity";
-import OpportunitiesData from "../../../dumbData/opportunities";
+import TopBar from "components/TopBar";
+import Opportunity from "components/employee/Opportunity";
+import OpportunitiesData from "dumbData/opportunities";
 import {
   OpportunityContext,
   NewsContext,
   ResourcesContex
-} from "../../../context/homeContext";
-import News from "../../../components/employee/News";
-import NewsSinglePage from "../../../components/employee/NewsSinglePage";
-import OpporunitySingleFullPage from "../../../components/employee/OpportunitySingleFullPage";
-import Resources from "../../../components/employee/Resources";
-import LegalAdvice from "../../../components/employee/legalAdvice";
-import Organizations from "../../../components/employee/organizations";
-import Programs from "../../../components/employee/programs";
-import SearchCurtain from "../../../components/employee/SearchCurtain";
+} from "context/homeContext";
+import News from "components/employee/News";
+import NewsSinglePage from "components/employee/NewsSinglePage";
+import OpporunitySingleFullPage from "components/employee/OpportunitySingleFullPage";
+import Resources from "components/employee/Resources";
+import LegalAdvice from "components/employee/LegalAdvice";
+import Organizations from "components/employee/Organizations";
+import Programs from "components/employee/Programs";
+import SearchCurtain from "components/employee/SearchCurtain";
 import MaterialTable from "material-table";
 
 function TabContainer({ children, dir }) {

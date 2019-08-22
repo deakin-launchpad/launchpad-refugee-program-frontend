@@ -4,10 +4,10 @@
 
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Login from "views/main/login";
-import Home from "views/main/home";
+import Login from "views/main/Login";
+import Home from "views/main/Home";
 import UserHome from "views/employeeViews/home/Home.js";
-import RegisterEmployer from "views/employerViews/register/register";
+import RegisterEmployer from "views/employerViews/register/Register";
 import RegisterEmployee from "views/employeeViews/register/Register";
 import OnBoarding from "views/employeeViews/register/OnBoarding";
 import Profile from "views/employeeViews/profile/Profile";
