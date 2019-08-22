@@ -12,11 +12,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import API from "../../helpers/api";
+import API from "helpers/api";
 import { LoginContext } from "../../context/loginContext";
 import { DemoDataContext } from "../../context/demodataContext";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import AutoFill from "../../components/SwitchAutofill";
 
 const useStyles = makeStyles(theme => ({
@@ -48,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login() {
+  const [redirectFLAG, setredirectFLAG] = useState(false);
   const classes = useStyles();
   const [emailId, setEmailId] = useState();
   const [password, setPassword] = useState();
@@ -77,9 +78,9 @@ export default function Login() {
       const pwd = valueDevPsw;
       // let emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       // let emailPatternTest = emailPattern.test(email);
-      console.log("here");
+
       if (email && pwd) {
-        API.loginUser({ email, pwd }, setAccessToken);
+        API.loginUser({ emailId, password }, setAccessToken);
         return true;
       } else if (email === undefined && pwd === undefined) {
         setErrorStatus(true);
@@ -100,15 +101,21 @@ export default function Login() {
         return false;
       }
     } else {
-      window.localStorage.clear();
-      setTriggerDeveloperMode(true);
+      console.log("inside devMODE")
+      API.loginUser({ emailId: data.emailId, password: data.password }, setAccessToken);
+      setredirectFLAG(true);
     }
   }
 
   useEffect(() => {
     autoFill();
   }, [triggerDeveloperMode]);
-  return (
+
+  let redirectToUserHome = (
+    <Redirect to='/user/employee/home'></Redirect>
+  )
+
+  let main = (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -150,7 +157,7 @@ export default function Login() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={validationCheck}
+            onClick={() => { validationCheck() }}
           >
             Login
           </Button>
@@ -184,4 +191,8 @@ export default function Login() {
       </Box>
     </Container>
   );
+  if (!redirectFLAG)
+    return main;
+  return redirectToUserHome
+
 }
