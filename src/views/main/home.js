@@ -21,7 +21,6 @@ const Home = () => {
   ] = useContext(LoginContext);
 
   function logoutUser() {
-    window.localStorage.clear();
     setLoginStatus(false);
     setTriggerDeveloperMode(false);
     setRedirectOnLogout(true);
@@ -35,7 +34,7 @@ const Home = () => {
       </IconButton>
       <div className="container-reg">
         <IconButton color="inherit">
-          <a href="http://localhost:3000/login"> Employer</a>
+          <Link to="/login" > Employer</Link>
         </IconButton>
         <IconButton color="inherit">
           <Link to="/login" className="link-reg">
