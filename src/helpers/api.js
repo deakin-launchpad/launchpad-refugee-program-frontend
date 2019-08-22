@@ -2,29 +2,42 @@
  *  Created by Nirav Bhimani
  **/
 
-// import { axiosInstance } from "./axiosInstance";
-import axios from "axios";
+// import axios from "axios";
+import { axiosInstance } from "./axiosInstance";
 
 class API {
   // POST Request
   registerUser = data => {
-    axios({
-      method: "post",
-      url: "http://localhost:8000/api/user/register",
-      data
+
+    axiosInstance.post('user/register', data).then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
     })
-      .then(response => response)
-      .catch(error => console.log(error));
+    // axios({
+    //   method: "post",
+    //   url: "http://localhost:8031/api/user/register",
+    //   data
+    // })
+    //   .then(response => response)
+    //   .catch(error => console.log(error));
   };
 
   loginUser = (data, accessToken) => {
-    axios({
-      method: "post",
-      url: "http://localhost:8000/api/user/login",
-      data: data
+    axiosInstance.post('user/login', data).then(response => {
+      console.log(response);
+      accessToken(response.data.data.accessToken);
+    }).catch(error => {
+      console.log(error);
     })
-      .then(response => accessToken(response.data.data.accessToken))
-      .catch(error => console.log(error));
+
+    // axios({
+    //   method: "post",
+    //   url: "http://localhost:8031/api/user/login",
+    //   data: data
+    // })
+    //   .then(response => accessToken(response.data.data.accessToken))
+    //   .catch(error => console.log(error));
   };
   // GET Request
 }
